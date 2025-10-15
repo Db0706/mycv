@@ -126,7 +126,7 @@ function createParticleBackground() {
     canvas.style.width = '100%';
     canvas.style.height = '100%';
     canvas.style.pointerEvents = 'none';
-    canvas.style.opacity = '0.3';
+    canvas.style.opacity = '0.5';
     header.prepend(canvas);
 
     const ctx = canvas.getContext('2d');
@@ -156,7 +156,7 @@ function createParticleBackground() {
         draw() {
             ctx.beginPath();
             ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-            ctx.fillStyle = '#9945FF';
+            ctx.fillStyle = '#656E77';
             ctx.fill();
         }
     }
@@ -180,10 +180,10 @@ function createParticleBackground() {
                 const dy = p1.y - p2.y;
                 const distance = Math.sqrt(dx * dx + dy * dy);
 
-                if (distance < 100) {
+                if (distance < 120) {
                     ctx.beginPath();
-                    ctx.strokeStyle = `rgba(153, 69, 255, ${1 - distance / 100})`;
-                    ctx.lineWidth = 0.5;
+                    ctx.strokeStyle = `rgba(101, 110, 119, ${1 - distance / 120})`;
+                    ctx.lineWidth = 1;
                     ctx.moveTo(p1.x, p1.y);
                     ctx.lineTo(p2.x, p2.y);
                     ctx.stroke();
