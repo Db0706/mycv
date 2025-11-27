@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OG Image Generator</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #f0f0f0;
+        }
+
+        /* OG Image Container - 1200x630px (standard social media size) */
+        .og-card {
+            width: 1200px;
+            height: 630px;
+            background: #656E77;
+            position: relative;
+            overflow: hidden;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        /* Particle effects background */
+        .og-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(circle at 20% 30%, rgba(202, 212, 223, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(202, 212, 223, 0.1) 0%, transparent 50%);
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            padding: 80px 100px;
+            height: 100%;
+        }
+
+        .profile-section {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .profile-img-wrapper {
+            position: relative;
+        }
+
+        .profile-img-wrapper::after {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: -8px;
+            right: -8px;
+            bottom: -8px;
+            border: 3px solid #CAD4DF;
+            border-radius: 50%;
+            opacity: 0.4;
+        }
+
+        .profile-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 4px solid #CAD4DF;
+            object-fit: cover;
+        }
+
+        .text-content {
+            flex: 1;
+        }
+
+        .name {
+            font-size: 72px;
+            font-weight: 800;
+            color: #DDDBDE;
+            margin: 0 0 15px 0;
+            letter-spacing: -2px;
+            line-height: 1;
+        }
+
+        .title {
+            font-size: 32px;
+            color: #9BA5AE;
+            margin: 0 0 40px 0;
+            font-weight: 400;
+        }
+
+        .contact-info {
+            display: flex;
+            gap: 35px;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            color: #CAD4DF;
+            font-size: 22px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .contact-item::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: #CAD4DF;
+            border-radius: 50%;
+        }
+
+        /* Decorative element */
+        .decoration {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle at center, rgba(202, 212, 223, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <div class="og-card">
+        <div class="content">
+            <div class="profile-section">
+                <div class="profile-img-wrapper">
+                    <img src="dean.png" alt="Dean Ball" class="profile-img">
+                </div>
+            </div>
+            <div class="text-content">
+                <h1 class="name">Dean Ball</h1>
+                <p class="title">Full Stack Developer | Founder @ DD Gaming</p>
+                <div class="contact-info">
+                    <span class="contact-item">dean@ddgaming.io</span>
+                    <span class="contact-item">DB0706</span>
+                    <span class="contact-item">@deandev10</span>
+                    <span class="contact-item">scrolly.games</span>
+                </div>
+            </div>
+        </div>
+        <div class="decoration"></div>
+    </div>
+
+    <div style="margin-top: 40px; text-align: center; color: #666; font-family: 'Outfit', sans-serif;">
+        <p>Screenshot this card at 1200x630px for your social media preview image</p>
+        <p>Or right-click → "Save As" to download</p>
+    </div>
+</body>
+</html>

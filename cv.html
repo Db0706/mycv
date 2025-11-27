@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dean Ball - CV</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 1.5cm;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Calibri', 'Arial', sans-serif;
+            line-height: 1.4;
+            color: #000;
+            max-width: 21cm;
+            margin: 0 auto;
+            padding: 15px;
+            font-size: 10pt;
+        }
+
+        .header {
+            text-align: center;
+            border-bottom: 2px solid #000;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+
+        .header h1 {
+            font-size: 20pt;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .header .title {
+            font-size: 11pt;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .contact {
+            font-size: 9pt;
+        }
+
+        .section {
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-size: 12pt;
+            font-weight: bold;
+            border-bottom: 1px solid #000;
+            margin-bottom: 8px;
+            padding-bottom: 2px;
+            text-transform: uppercase;
+        }
+
+        .experience-item, .project-item {
+            margin-bottom: 10px;
+        }
+
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+            margin-bottom: 2px;
+        }
+
+        .company {
+            font-style: italic;
+            margin-bottom: 3px;
+            font-size: 9.5pt;
+        }
+
+        .experience-item ul, .project-item ul {
+            margin-left: 15px;
+            margin-top: 3px;
+        }
+
+        .experience-item li, .project-item li {
+            margin-bottom: 2px;
+            font-size: 9.5pt;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 5px;
+            margin-top: 5px;
+        }
+
+        .skill-category {
+            margin-bottom: 8px;
+        }
+
+        .skill-category h3 {
+            font-size: 10pt;
+            font-weight: bold;
+            margin-bottom: 3px;
+        }
+
+        .skill-category p {
+            font-size: 9.5pt;
+            line-height: 1.3;
+        }
+
+        .education-item {
+            margin-bottom: 5px;
+        }
+
+        .education-item h3 {
+            font-size: 10pt;
+            font-weight: bold;
+        }
+
+        .institution {
+            font-style: italic;
+            font-size: 9.5pt;
+        }
+
+        .duration {
+            font-size: 9pt;
+            color: #333;
+        }
+
+        .profile {
+            text-align: justify;
+            font-size: 9.5pt;
+            line-height: 1.4;
+            margin-bottom: 5px;
+        }
+
+        @media print {
+            body {
+                margin: 0;
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>DEAN BALL</h1>
+        <div class="title">Full Stack Developer | Founder & Lead Developer</div>
+        <div class="contact">
+            dean@ddgaming.io | GitHub: DB0706 | deandev10.info | @deandev10
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Professional Profile</div>
+        <p class="profile">
+            Self-taught full-stack developer with proven expertise in Solana ecosystem development. Former Royal Navy Lead Mechanical Engineer with 10 years of high-pressure operational experience. Founder of DD Gaming, winner of Solana Mobile Hackathon. Demonstrated ability to rapidly master new technologies and deliver production-ready applications independently. Highly proactive, self-motivated, and committed to driving innovation in Web3 gaming.
+        </p>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Work Experience</div>
+
+        <div class="experience-item">
+            <div class="experience-header">
+                <span>Founder & Lead Developer</span>
+                <span>2024 - Present</span>
+            </div>
+            <div class="company">DD Gaming | Gaming & Venture Studio</div>
+            <ul>
+                <li>Founded gaming and venture studio specialising in Web3 gaming on Solana; developed 4 custom client games and 25+ games for Scrolly platform</li>
+                <li>Won Solana Mobile Hackathon with Scrolly—solo developed entire platform, teaching myself Next.js and TypeScript from scratch</li>
+                <li>Successfully deployed applications to iOS, Android, and Solana Mobile Stack</li>
+                <li>Leading DCM initiative: live-stream coding complete Solana projects in 8-12 hours to onboard new founders</li>
+            </ul>
+        </div>
+
+        <div class="experience-item">
+            <div class="experience-header">
+                <span>Shift Production Manager</span>
+                <span>2019 - Present</span>
+            </div>
+            <div class="company">Railway Operations | London</div>
+            <ul>
+                <li>Manage and oversee all engineering and operations across London for day-to-day railway running</li>
+                <li>Lead teams in high-stress, fast-paced environment making critical operational decisions</li>
+                <li>Developed strong leadership and crisis management skills in highly competitive environment</li>
+            </ul>
+        </div>
+
+        <div class="experience-item">
+            <div class="experience-header">
+                <span>Lead Mechanical Engineer</span>
+                <span>2009 - 2019</span>
+            </div>
+            <div class="company">Commando Helicopter Force | British Royal Navy</div>
+            <ul>
+                <li>Served as Lead Mechanical Engineer for 10 years; deployed worldwide in high-pressure military operations</li>
+                <li>Awarded medals for acts of service and received distinctions in engineering qualifications</li>
+                <li>Demonstrated exceptional ability to adapt and learn quickly in fast-paced, demanding environments</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Key Projects</div>
+
+        <div class="project-item">
+            <div class="experience-header">
+                <span>Scrolly - Solana Mobile Hackathon Winner</span>
+                <span>scrolly.games</span>
+            </div>
+            <ul>
+                <li>Social gaming platform ("TikTok for games") with 25+ games; solo developed using Next.js, TypeScript, React, C++</li>
+                <li>Deployed to iOS, Android, and Solana Mobile Stack</li>
+            </ul>
+        </div>
+
+        <div class="project-item">
+            <div class="experience-header">
+                <span>Card Crush & Sudo Cat</span>
+                <span>In Development</span>
+            </div>
+            <ul>
+                <li>Match-3 game and multiplayer wagering game built with Unity and Solana integration</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Technical Skills</div>
+        <div class="skill-category">
+            <h3>Blockchain & Web3</h3>
+            <p>Solana, Anchor Framework, Solana Web3.js, Metaplex, Multi-Wallet Integration, Smart Contracts, Solana Mobile Stack, Player Profile Architecture</p>
+        </div>
+        <div class="skill-category">
+            <h3>Languages & Frameworks</h3>
+            <p>JavaScript, TypeScript, Rust, C++, Python, React, Next.js, React Native, Node.js, Unity</p>
+        </div>
+        <div class="skill-category">
+            <h3>Infrastructure & Tools</h3>
+            <p>AWS, Vercel, Docker, Git, PostgreSQL, MongoDB, iOS/Android Development, Photon Fusion, APIs</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Education & Honors</div>
+        <div class="education-item">
+            <h3>HNC Aeronautical Engineering</h3>
+            <p class="institution">Kingston University London</p>
+            <p class="duration">Completed during military career (2009-2019) | Received distinctions</p>
+        </div>
+        <div class="education-item" style="margin-top: 5px;">
+            <h3>Military Service & Self-Taught Development</h3>
+            <p class="duration">Medals for acts of service (British Royal Navy) | Solana Mobile Hackathon Winner | Fully self-taught developer</p>
+        </div>
+    </div>
+</body>
+</html>
