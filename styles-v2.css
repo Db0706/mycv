@@ -968,8 +968,11 @@ body {
     }
 
     .featured-project {
-        grid-template-columns: 1fr;
+        display: grid !important;
+        grid-template-columns: 1fr !important;
         padding: 40px 30px;
+        visibility: visible !important;
+        min-height: auto !important;
     }
 
     .carousel-container {
@@ -986,10 +989,13 @@ body {
 
     .screenshot-carousel {
         overflow: visible;
+        display: block !important;
+        min-height: 400px;
     }
 
     .carousel-track {
         min-height: 400px;
+        display: block !important;
     }
 }
 
@@ -1040,7 +1046,15 @@ body {
     }
 
     .featured-project {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
         padding: 30px 20px;
+        visibility: visible !important;
+    }
+
+    .featured-project-content {
+        display: block !important;
+        visibility: visible !important;
     }
 
     .mvp-section {
