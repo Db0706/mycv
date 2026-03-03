@@ -127,6 +127,15 @@ function initNavigation() {
 
 // Intersection Observer for fade-in animations
 function initScrollAnimations() {
+    // Skip animations on mobile to avoid rendering issues
+    if (window.innerWidth <= 768) {
+        document.querySelectorAll('.content-section').forEach(section => {
+            section.style.opacity = '1';
+            section.style.transform = 'translateY(0)';
+        });
+        return;
+    }
+
     const observerOptions = {
         threshold: 0.1,
         rootMargin: '0px 0px -100px 0px'
