@@ -953,7 +953,10 @@ body {
     }
 
     .projects-grid {
-        grid-template-columns: 1fr;
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 25px;
+        margin-top: 30px;
     }
 
     .experience-grid {
@@ -979,6 +982,14 @@ body {
 
     .carousel-btn.next {
         right: 10px;
+    }
+
+    .screenshot-carousel {
+        overflow: visible;
+    }
+
+    .carousel-track {
+        min-height: 400px;
     }
 }
 
@@ -1034,6 +1045,8 @@ body {
 
     .mvp-section {
         padding: 30px 20px;
+        display: block !important;
+        visibility: visible !important;
     }
 
     .mvp-carousel-track {
@@ -1052,6 +1065,11 @@ body {
     .mvp-image.next {
         transform: translateX(100%) scale(0.7);
         opacity: 0.3;
+    }
+
+    .project-card {
+        display: block !important;
+        visibility: visible !important;
     }
 
     .carousel-btn {
