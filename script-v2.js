@@ -199,6 +199,41 @@ function currentSlide(index) {
     dots[currentSlideIndex].classList.add('active');
 }
 
+// Nocturne Carousel functionality
+let currentNocturneSlideIndex = 0;
+
+function moveNocturneCarousel(direction) {
+    const images = document.querySelectorAll('.nocturne-carousel-image');
+    const dots = document.querySelectorAll('.nocturne-dot');
+
+    images[currentNocturneSlideIndex].classList.remove('active');
+    dots[currentNocturneSlideIndex].classList.remove('active');
+
+    currentNocturneSlideIndex += direction;
+
+    if (currentNocturneSlideIndex >= images.length) {
+        currentNocturneSlideIndex = 0;
+    } else if (currentNocturneSlideIndex < 0) {
+        currentNocturneSlideIndex = images.length - 1;
+    }
+
+    images[currentNocturneSlideIndex].classList.add('active');
+    dots[currentNocturneSlideIndex].classList.add('active');
+}
+
+function currentNocturneSlide(index) {
+    const images = document.querySelectorAll('.nocturne-carousel-image');
+    const dots = document.querySelectorAll('.nocturne-dot');
+
+    images[currentNocturneSlideIndex].classList.remove('active');
+    dots[currentNocturneSlideIndex].classList.remove('active');
+
+    currentNocturneSlideIndex = index - 1;
+
+    images[currentNocturneSlideIndex].classList.add('active');
+    dots[currentNocturneSlideIndex].classList.add('active');
+}
+
 // MVP Carousel functionality
 let currentMVPIndex = 0;
 

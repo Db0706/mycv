@@ -469,7 +469,7 @@ body {
     border-radius: 24px;
     padding: 60px;
     border: 1px solid var(--border);
-    margin-bottom: 50px;
+    margin-bottom: 60px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 50px;
@@ -488,6 +488,78 @@ body {
     line-height: 1.8;
     font-size: 1.1rem;
     margin-bottom: 30px;
+}
+
+/* Feature Details Expandable */
+.feature-details {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 30px;
+    border: 1px solid var(--border);
+}
+
+.feature-summary {
+    color: var(--accent-primary);
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 1.05rem;
+    list-style: none;
+    user-select: none;
+    transition: color 0.3s ease;
+}
+
+.feature-summary:hover {
+    color: var(--text-light);
+}
+
+.feature-summary::marker {
+    content: '';
+}
+
+.feature-summary::before {
+    content: '▶ ';
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.feature-details[open] .feature-summary::before {
+    transform: rotate(90deg);
+}
+
+.feature-content {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+}
+
+.feature-content h4 {
+    color: var(--text-light);
+    font-size: 1.15rem;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.feature-content h4:first-child {
+    margin-top: 0;
+}
+
+.feature-content ul,
+.feature-content ol {
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+.feature-content li {
+    color: var(--text-primary);
+    line-height: 1.8;
+    margin-bottom: 10px;
+}
+
+.feature-content li strong {
+    color: var(--accent-primary);
+    font-weight: 600;
 }
 
 /* Carousel Styling */
@@ -509,17 +581,20 @@ body {
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
 }
 
-.carousel-image {
+.carousel-image,
+.nocturne-carousel-image {
     display: none;
     width: 100%;
     height: auto;
 }
 
-.carousel-image.active {
+.carousel-image.active,
+.nocturne-carousel-image.active {
     display: block;
 }
 
-.carousel-image.active {
+.carousel-image.active,
+.nocturne-carousel-image.active {
     opacity: 1;
 }
 
@@ -562,7 +637,8 @@ body {
     margin-top: 25px;
 }
 
-.dot {
+.dot,
+.nocturne-dot {
     width: 12px;
     height: 12px;
     border-radius: 50%;
@@ -571,7 +647,8 @@ body {
     transition: all 0.3s ease;
 }
 
-.dot.active {
+.dot.active,
+.nocturne-dot.active {
     background: var(--accent-primary);
     width: 30px;
     border-radius: 6px;

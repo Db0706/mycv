@@ -42,19 +42,16 @@
                     <img src="dean.png" alt="Dean Ball" class="profile-img">
                 </div>
                 <h1 class="hero-title">Dean Ball</h1>
-                <p class="hero-subtitle">Full Stack Developer | Founder @ DD Gaming</p>
+                <p class="hero-subtitle">Full Stack Developer | Rapid MVP Shipper</p>
                 <div class="hero-links">
-                    <a href="mailto:dean@ddgaming.io" class="hero-link">
-                        <i class="fas fa-envelope"></i> dean@ddgaming.io
+                    <a href="mailto:contact@deandev10.info" class="hero-link">
+                        <i class="fas fa-envelope"></i> contact@deandev10.info
                     </a>
                     <a href="https://github.com/DB0706" target="_blank" class="hero-link">
                         <i class="fab fa-github"></i> DB0706
                     </a>
                     <a href="https://twitter.com/deandev10" target="_blank" class="hero-link">
                         <i class="fab fa-twitter"></i> @deandev10
-                    </a>
-                    <a href="https://scrolly.games" target="_blank" class="hero-link">
-                        <i class="fas fa-globe"></i> scrolly.games
                     </a>
                 </div>
             </div>
@@ -132,12 +129,14 @@
                             <h3>Founder & Lead Developer</h3>
                             <span class="exp-date">2024 - Present</span>
                         </div>
-                        <p class="exp-company">DD Gaming | Gaming & Venture Studio</p>
+                        <p class="exp-company">CTO | Multiple Start-up Ventures</p>
                         <ul class="exp-list">
+                            <li>Locked in on privacy features and implementation in apps - building a Solana to Midnight wallet/bridge for basic to enhanced privacy features</li>
+                            <li>Currently building out a Unity SDK for AVAX for fun in my spare time as I enjoy the design and architecture behind larger projects and game projects - keeps it fun whilst I'm advancing my skill base</li>
                             <li>Built Scrolly from scratch - taught myself Next.js and TypeScript using AI, GitHub, and YouTube to ship a working product in 8 weeks</li>
                             <li>Developed full-stack Web3 games handling everything: smart contracts, backend servers, and player-ready UIs built with React and TypeScript</li>
                             <li>Won Solana Mobile Hackathon by building a product users actually wanted - 200k games played, 3k verified users in 14 weeks with zero retention gimmicks</li>
-                            <li>Ship 4-12 hour MVPs live on-chain to test my limits and prove you can build fast without sacrificing quality - live playable products instead of Figma mockups</li>
+                            <li>Shipped over 20 4-12 hour MVPs live on-chain to test my limits and prove you can build fast without sacrificing quality - live playable products instead of Figma mockups</li>
                             <li>Live code full projects in 8-12 hour streams on X with up to 4k viewers - building under pressure and figuring things out in real-time</li>
                             <li>Focus on user interaction and game mechanics that keep people coming back - building experiences, not just features</li>
                         </ul>
@@ -225,6 +224,108 @@
                     <p class="section-desc">Sleek interfaces for real-time blockchain applications</p>
                 </div>
 
+                <!-- Featured Project - Nocturne -->
+                <div class="featured-project">
+                    <div class="featured-project-content">
+                        <div class="project-icon">
+                            <i class="fas fa-wallet"></i>
+                        </div>
+                        <h3>Nocturne</h3>
+                        <p>Privacy-focused React Native wallet built for Solana with Midnight bridge integration. Solana-first, Midnight-ready architecture allowing users to seamlessly send to Midnight addresses for enhanced privacy. Pre-beta mobile wallet featuring ZK-SNARK compression via Light Protocol (90% cheaper transactions), stealth addresses, TOR routing, encrypted messaging with Signal Protocol, and direct SOL to NIGHT conversion. Built to give Solana users the privacy features they deserve without compromising on security or usability.</p>
+
+                        <details class="feature-details">
+                            <summary class="feature-summary">Full Feature List</summary>
+                            <div class="feature-content">
+                                <h4>NOCTURNE PRIMARY FEATURES:</h4>
+                                <ul>
+                                    <li><strong>Mobile wallet:</strong> React Native app for iOS/Android with biometric auth and hardware-backed key storage</li>
+                                    <li><strong>Light Protocol:</strong> ZK-SNARK compression hides transaction amounts on-chain, 90% cheaper than standard Solana transactions</li>
+                                    <li><strong>Stealth addresses:</strong> ECDH-based one-time addresses, each payment creates unique unlinkable address (EIP-5564 adapted for Solana)</li>
+                                    <li><strong>TOR routing:</strong> All RPC requests routed through TOR network to hide IP and location</li>
+                                    <li><strong>Ephemeral addresses:</strong> Generate one-time receive addresses, manually sweep funds to main wallet (unlinkable from main address)</li>
+                                    <li><strong>Privacy score calculator:</strong> Real-time analysis (0-10 score) warns about amount patterns, recipient reuse, timing analysis (kinda trashy might remove)</li>
+                                    <li><strong>Duress wallet:</strong> Alternate PIN opens decoy wallet with fake low balance for coercion scenarios</li>
+                                    <li><strong>Dead man's switch:</strong> Auto-transfers funds to beneficiary after 'X' amount of days of inactivity</li>
+                                    <li><strong>Encrypted messaging:</strong> Signal Protocol (Double Ratchet) for private chats between users (I want to add send functions in here also in future)</li>
+                                    <li><strong>Transaction scheduling:</strong> Recurring payments (daily/weekly/monthly) for automated bill payment</li>
+                                    <li><strong>Midnight bridge:</strong> Direct SOL to NIGHT conversion with Midnight address support</li>
+                                </ul>
+
+                                <h4>On the Midnight side of the app and bridge relay this is what I have set up:</h4>
+                                <ul>
+                                    <li>Midnight SDK integration</li>
+                                    <li>WalletBuilder setup with preprod network</li>
+                                    <li>Transfer transaction creation</li>
+                                    <li>Zero-knowledge proof generation</li>
+                                    <li>Transaction submission to Midnight Network</li>
+                                    <li>Constant product AMM swap calculation</li>
+                                    <li>Pool reserve tracking</li>
+                                    <li>API endpoints (/jobs, /register, /status, /deposit, /pool, /health)</li>
+                                    <li>Job processing pipeline</li>
+                                    <li>Fallback to mock transactions for testing</li>
+                                </ul>
+
+                                <h4>What's remaining on that side:</h4>
+                                <ol>
+                                    <li>Automatic deposit monitoring</li>
+                                    <li>Fund the liquidity pool (currently using test values: 0.5 SOL / 1000 NIGHT)</li>
+                                    <li>Set MIDNIGHT_SEED environment variable with actual funded wallet</li>
+                                    <li>Test, update, repeat.</li>
+                                </ol>
+                            </div>
+                        </details>
+
+                        <div class="project-metrics">
+                            <div class="metric-item">
+                                <div class="metric-number">11</div>
+                                <div class="metric-text">Core Features</div>
+                            </div>
+                            <div class="metric-item">
+                                <div class="metric-number">SOL/NIGHT</div>
+                                <div class="metric-text">Bridge</div>
+                            </div>
+                            <div class="metric-item">
+                                <div class="metric-number">SECURED</div>
+                                <div class="metric-text">Your Privacy</div>
+                            </div>
+                            <div class="metric-item">
+                                <div class="metric-number">Pre-Beta</div>
+                                <div class="metric-text">Development</div>
+                            </div>
+                        </div>
+
+                        <div class="project-tech">
+                            <span class="tech-badge">React Native</span>
+                            <span class="tech-badge">Solana</span>
+                            <span class="tech-badge">Midnight</span>
+                            <span class="tech-badge">Light Protocol</span>
+                            <span class="tech-badge">ZK-SNARKs</span>
+                            <span class="tech-badge">TOR</span>
+                            <span class="tech-badge">Signal Protocol</span>
+                        </div>
+                        <a href="https://x.com/nocturnewallet" target="_blank" class="project-link">Follow along on X <i class="fas fa-arrow-right"></i></a>
+                    </div>
+
+                    <div class="screenshot-carousel">
+                        <div class="carousel-container">
+                            <button class="carousel-btn prev" onclick="moveNocturneCarousel(-1)">‹</button>
+                            <div class="carousel-track">
+                                <img src="nocturne/5852938263285402950.jpg" alt="Nocturne Screenshot 1" class="nocturne-carousel-image active">
+                                <img src="nocturne/5852938263285402952.jpg" alt="Nocturne Screenshot 2" class="nocturne-carousel-image">
+                                <img src="nocturne/5852938263285402955.jpg" alt="Nocturne Screenshot 3" class="nocturne-carousel-image">
+                                <img src="nocturne/5852938263285402956.jpg" alt="Nocturne Screenshot 4" class="nocturne-carousel-image">
+                            </div>
+                            <button class="carousel-btn next" onclick="moveNocturneCarousel(1)">›</button>
+                        </div>
+                        <div class="carousel-dots">
+                            <span class="nocturne-dot active" onclick="currentNocturneSlide(1)"></span>
+                            <span class="nocturne-dot" onclick="currentNocturneSlide(2)"></span>
+                            <span class="nocturne-dot" onclick="currentNocturneSlide(3)"></span>
+                            <span class="nocturne-dot" onclick="currentNocturneSlide(4)"></span>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Featured Project - Scrolly -->
                 <div class="featured-project">
                     <div class="featured-project-content">
@@ -236,20 +337,20 @@
 
                         <div class="project-metrics">
                             <div class="metric-item">
-                                <div class="metric-number">200k+</div>
+                                <div class="metric-number">1.7M+</div>
                                 <div class="metric-text">Games Played</div>
                             </div>
                             <div class="metric-item">
-                                <div class="metric-number">3k+</div>
+                                <div class="metric-number">5k+</div>
                                 <div class="metric-text">Verified Users</div>
                             </div>
                             <div class="metric-item">
-                                <div class="metric-number">14 Weeks</div>
-                                <div class="metric-text">Organic Growth</div>
+                                <div class="metric-number">B2B Dev Portal</div>
+                                <div class="metric-text">Current Stage</div>
                             </div>
                             <div class="metric-item">
-                                <div class="metric-number">8 Weeks</div>
-                                <div class="metric-text">Build Time</div>
+                                <div class="metric-number">HIRING</div>
+                                <div class="metric-text">Company</div>
                             </div>
                         </div>
 
@@ -259,6 +360,11 @@
                             <span class="tech-badge">React</span>
                             <span class="tech-badge">Solana</span>
                             <span class="tech-badge">Tailwind CSS</span>
+                            <span class="tech-badge">PostgreSQL</span>
+                            <span class="tech-badge">MongoDB</span>
+                            <span class="tech-badge">AWS</span>
+                            <span class="tech-badge">Docker</span>
+                            <span class="tech-badge">REST APIs</span>
                         </div>
                         <a href="https://scrolly.games" target="_blank" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
                     </div>
@@ -417,7 +523,7 @@
                 <div class="footer-content">
                     <p>&copy; 2025 Dean Ball. Built with passion for blockchain technology.</p>
                     <div class="footer-links">
-                        <a href="mailto:dean@ddgaming.io">Contact Me</a>
+                        <a href="mailto:contact@deandev10.info">Contact Me</a>
                         <a href="https://github.com/DB0706" target="_blank">GitHub</a>
                         <a href="https://twitter.com/deandev10" target="_blank">Twitter</a>
                     </div>
