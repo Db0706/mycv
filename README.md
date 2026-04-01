@@ -167,11 +167,4 @@ Free to use and modify for your personal CV.
 
 ## Good Luck!
 
-Best wishes with your Solana job applications! Remember to:
-- Keep your CV updated
-- Customize it to match job requirements
-- Proofread everything carefully
-- Test on multiple devices
-- Share the link in your applications
-
-Built with passion for the Solana ecosystem 💜
+## Dev10 🫡
