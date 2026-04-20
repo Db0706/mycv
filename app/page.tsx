@@ -331,12 +331,12 @@ export default function Portfolio() {
             bottom: 0 !important;
             left: 0 !important;
             right: 0 !important;
-            width: 100% !important;
+            width: 100vw !important;
             max-width: 100vw !important;
             height: auto !important;
             margin: 0 !important;
-            padding: 12px 16px !important;
-            padding-bottom: calc(12px + env(safe-area-inset-bottom)) !important;
+            padding: 0 !important;
+            padding-bottom: env(safe-area-inset-bottom, 0) !important;
             background: #000000 !important;
             backdrop-filter: blur(12px) !important;
             -webkit-backdrop-filter: blur(12px) !important;
@@ -348,6 +348,17 @@ export default function Portfolio() {
             backface-visibility: hidden !important;
             -webkit-backface-visibility: hidden !important;
             box-sizing: border-box !important;
+          }
+
+          .mobile-nav-wrapper nav {
+            width: 100% !important;
+            max-width: 100% !important;
+            border-radius: 0 !important;
+            border-left: none !important;
+            border-right: none !important;
+            border-bottom: none !important;
+            margin: 0 !important;
+            padding: 12px 0 !important;
           }
 
           footer {
@@ -405,12 +416,12 @@ export default function Portfolio() {
       </header>
 
       {/* Mobile Navigation with LimelightNav */}
-      <div className="mobile-nav-wrapper" style={{ justifyContent: 'center', padding: '12px 0', borderTop: '1px solid #1a1a1a', margin: 0, boxSizing: 'border-box' }}>
+      <div className="mobile-nav-wrapper">
         <LimelightNav
           items={navItems}
           defaultActiveIndex={0}
           onTabChange={(index) => setActiveSection(index)}
-          className="bg-black border-[#1a1a1a] text-white"
+          className="bg-black border-none text-white w-full rounded-none"
           iconClassName="text-white"
         />
       </div>
