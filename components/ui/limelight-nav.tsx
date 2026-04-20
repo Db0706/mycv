@@ -82,10 +82,10 @@ export const LimelightNav = ({
             onClick={() => handleItemClick(index, onClick)}
             aria-label={label}
           >
-            {cloneElement(icon, {
+            {cloneElement(icon as React.ReactElement<any>, {
               className: `w-6 h-6 transition-opacity duration-100 ease-in-out ${
                 activeIndex === index ? 'opacity-100' : 'opacity-40'
-              } ${icon.props.className || ''} ${iconClassName || ''}`,
+              } ${(icon as any).props?.className || ''} ${iconClassName || ''}`,
               stroke: 'currentColor',
             })}
           </a>
