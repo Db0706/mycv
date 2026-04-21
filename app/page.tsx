@@ -483,16 +483,6 @@ export default function Portfolio() {
             <p style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '1px', color: '#666', marginBottom: '16px' }}>CURRENT FOCUS</p>
 
             <div style={{ display: 'grid', gap: '12px' }}>
-              <Link href="/projects/scrolly" className="focus-card" style={{ textDecoration: 'none' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
-                  <span className="status-growing" style={{ fontSize: '10px', textTransform: 'uppercase', padding: '4px 8px', borderRadius: '4px', fontWeight: 600, letterSpacing: '0.5px' }}>GROWING</span>
-                  <span style={{ color: '#333' }}>·</span>
-                  <span style={{ fontSize: '11px', color: '#666' }}>AI · Agents</span>
-                </div>
-                <h3 style={{ fontSize: '18px', fontWeight: 600, color: '#e5e5e5', marginBottom: '8px' }}>Scrolly</h3>
-                <p style={{ fontSize: '14px', color: '#999', lineHeight: 1.6 }}>Platform empowering anyone to become a game publisher. Full-stack development from 0 to 40k+ users with custom game engine, tournament infrastructure, and B2B dashboard. Next.js, TypeScript, PostgreSQL.</p>
-              </Link>
-
               <Link href="/projects/trader-native-os" className="focus-card" style={{ textDecoration: 'none' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
                   <span className="status-building" style={{ fontSize: '10px', textTransform: 'uppercase', padding: '4px 8px', borderRadius: '4px', fontWeight: 600, letterSpacing: '0.5px' }}>BUILDING</span>
@@ -501,6 +491,16 @@ export default function Portfolio() {
                 </div>
                 <h3 style={{ fontSize: '18px', fontWeight: 600, color: '#e5e5e5', marginBottom: '8px' }}>Trader-Native Mobile OS</h3>
                 <p style={{ fontSize: '14px', color: '#999', lineHeight: 1.6 }}>Leading development team building custom Android OS for Web3 traders on native hardware. Currently called PumpOne.</p>
+              </Link>
+
+              <Link href="/projects/scrolly" className="focus-card" style={{ textDecoration: 'none' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
+                  <span className="status-growing" style={{ fontSize: '10px', textTransform: 'uppercase', padding: '4px 8px', borderRadius: '4px', fontWeight: 600, letterSpacing: '0.5px' }}>GROWING</span>
+                  <span style={{ color: '#333' }}>·</span>
+                  <span style={{ fontSize: '11px', color: '#666' }}>AI · Agents</span>
+                </div>
+                <h3 style={{ fontSize: '18px', fontWeight: 600, color: '#e5e5e5', marginBottom: '8px' }}>Scrolly</h3>
+                <p style={{ fontSize: '14px', color: '#999', lineHeight: 1.6 }}>Platform empowering anyone to become a game publisher. Full-stack development from 0 to 40k+ users with custom game engine, tournament infrastructure, and B2B dashboard. Next.js, TypeScript, PostgreSQL.</p>
               </Link>
             </div>
           </div>
