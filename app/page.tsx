@@ -11,7 +11,6 @@ export default function Portfolio() {
   const [activeSection, setActiveSection] = useState(0);
   const [githubData, setGithubData] = useState<GitHubStats | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [expandedSkills, setExpandedSkills] = useState<Record<string, boolean>>({});
 
   const navItems = [
     { id: 'focus', icon: <Home />, label: 'Focus', onClick: () => scrollToSection('focus') },
@@ -494,14 +493,14 @@ export default function Portfolio() {
                 <p style={{ fontSize: '14px', color: '#999', lineHeight: 1.6 }}>Platform empowering anyone to become a game publisher. Full-stack development from 0 to 40k+ users with custom game engine, tournament infrastructure, and B2B dashboard. Next.js, TypeScript, PostgreSQL.</p>
               </Link>
 
-              <Link href="/projects/tg-line-bots" className="focus-card" style={{ textDecoration: 'none' }}>
+              <Link href="/projects/trader-native-os" className="focus-card" style={{ textDecoration: 'none' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
-                  <span className="status-growing" style={{ fontSize: '10px', textTransform: 'uppercase', padding: '4px 8px', borderRadius: '4px', fontWeight: 600, letterSpacing: '0.5px' }}>GROWING</span>
+                  <span className="status-building" style={{ fontSize: '10px', textTransform: 'uppercase', padding: '4px 8px', borderRadius: '4px', fontWeight: 600, letterSpacing: '0.5px' }}>BUILDING</span>
                   <span style={{ color: '#333' }}>·</span>
-                  <span style={{ fontSize: '11px', color: '#666' }}>Automation · Web2</span>
+                  <span style={{ fontSize: '11px', color: '#666' }}>Mobile OS · Web3 · Infrastructure</span>
                 </div>
-                <h3 style={{ fontSize: '18px', fontWeight: 600, color: '#e5e5e5', marginBottom: '8px' }}>TG/Line Automation Bots</h3>
-                <p style={{ fontSize: '14px', color: '#999', lineHeight: 1.6 }}>TG/Line bots automating business operations for web2 clients. Payment processing, customer support, and custom workflows.</p>
+                <h3 style={{ fontSize: '18px', fontWeight: 600, color: '#e5e5e5', marginBottom: '8px' }}>Trader-Native Mobile OS</h3>
+                <p style={{ fontSize: '14px', color: '#999', lineHeight: 1.6 }}>Leading development team building custom Android OS for Web3 traders on native hardware. Currently called PumpOne.</p>
               </Link>
             </div>
           </div>
@@ -534,11 +533,31 @@ export default function Portfolio() {
                 <span className="project-badge-live" style={{ textDecoration: 'none' }}>ACTIVE</span>
               </div>
             </Link>
+
+            <Link href="/projects/tg-line-bots" className="project-item" style={{ textDecoration: 'none', cursor: 'pointer' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start' }}>
+                <div style={{ flex: 1 }}>
+                  <h3 style={{ fontSize: '16px', fontWeight: 600, color: '#e5e5e5', marginBottom: '8px' }}>TG/Line Automation Bots</h3>
+                  <p style={{ fontSize: '14px', color: '#999', lineHeight: 1.6 }}>TG/Line bots automating business operations for web2 clients. Payment processing, customer support, and custom workflows.</p>
+                </div>
+                <span className="project-badge-live" style={{ textDecoration: 'none' }}>ACTIVE</span>
+              </div>
+            </Link>
           </div>
 
           {/* In Build */}
           <p style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '1px', color: '#666', marginBottom: '12px' }}>IN BUILD</p>
           <div style={{ display: 'grid', gap: '12px', marginBottom: '32px' }}>
+            <Link href="/projects/trader-native-os" className="project-item" style={{ textDecoration: 'none', cursor: 'pointer' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start' }}>
+                <div style={{ flex: 1 }}>
+                  <h3 style={{ fontSize: '16px', fontWeight: 600, color: '#e5e5e5', marginBottom: '8px' }}>Trader-Native Mobile OS</h3>
+                  <p style={{ fontSize: '14px', color: '#999', lineHeight: 1.6 }}>Leading development team building custom Android OS for Web3 traders on native hardware. Currently called PumpOne.</p>
+                </div>
+                <span className="project-badge-repo" style={{ textDecoration: 'none' }}>IN BUILD</span>
+              </div>
+            </Link>
+
             <Link href="/projects/avax-ecosystem" className="project-item" style={{ textDecoration: 'none', cursor: 'pointer' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start' }}>
                 <div style={{ flex: 1 }}>
@@ -577,283 +596,74 @@ export default function Portfolio() {
 
           <div style={{ display: 'grid', gap: '16px' }}>
             {/* Languages */}
-            {(() => {
-              const skills = [
-                { name: 'TypeScript', level: 95 },
-                { name: 'JavaScript', level: 93 },
-                { name: 'Rust', level: 75 },
-                { name: 'Python', level: 78 },
-                { name: 'C++', level: 72 },
-                { name: 'Solidity', level: 70 },
-              ];
-              const average = Math.round(skills.reduce((acc, s) => acc + s.level, 0) / skills.length);
-              const isExpanded = expandedSkills['languages'];
+            <div style={{ background: '#0f0f0f', border: '1px solid #1a1a1a', borderRadius: '8px', padding: '20px' }}>
+              <p style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '1px', color: '#666', marginBottom: '16px' }}>LANGUAGES</p>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                {['TypeScript', 'JavaScript', 'Rust', 'Python', 'C++', 'Solidity'].map((skill) => (
+                  <span key={skill} className="tool-tag">{skill}</span>
+                ))}
+              </div>
+            </div>
 
-              return (
-                <div style={{ background: '#0f0f0f', border: '1px solid #1a1a1a', borderRadius: '8px', overflow: 'hidden' }}>
-                  <button
-                    onClick={() => setExpandedSkills(prev => ({ ...prev, languages: !prev.languages }))}
-                    style={{ width: '100%', padding: '16px', background: 'transparent', border: 'none', cursor: 'pointer', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
-                  >
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                      <p style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '1px', color: '#666', margin: 0 }}>LANGUAGES</p>
-                      <span style={{ fontSize: '13px', color: '#ff6b35', fontWeight: 600 }}>{average}%</span>
-                    </div>
-                    <span style={{ color: '#666', fontSize: '20px', transform: isExpanded ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.2s' }}>▼</span>
-                  </button>
-                  {isExpanded && (
-                    <div style={{ padding: '0 16px 16px 16px', display: 'grid', gap: '12px' }}>
-                      {skills.map((skill) => (
-                        <div key={skill.name}>
-                          <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '6px' }}>
-                            <span style={{ fontSize: '14px', color: '#e5e5e5' }}>{skill.name}</span>
-                            <span style={{ fontSize: '14px', color: '#666' }}>{skill.level}%</span>
-                          </div>
-                          <div style={{ width: '100%', height: '6px', background: '#1a1a1a', borderRadius: '3px', overflow: 'hidden' }}>
-                            <div style={{ width: `${skill.level}%`, height: '100%', background: '#ff6b35', borderRadius: '3px' }}></div>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              );
-            })()}
+            {/* Frontend */}
+            <div style={{ background: '#0f0f0f', border: '1px solid #1a1a1a', borderRadius: '8px', padding: '20px' }}>
+              <p style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '1px', color: '#666', marginBottom: '16px' }}>FRONTEND</p>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                {['React', 'Next.js', 'Tailwind CSS', 'CSS/SCSS', 'HTML5'].map((skill) => (
+                  <span key={skill} className="tool-tag">{skill}</span>
+                ))}
+              </div>
+            </div>
 
-{/* Frontend */}
-            {(() => {
-              const skills = [
-                { name: 'React', level: 95 },
-                { name: 'Next.js', level: 92 },
-                { name: 'Tailwind CSS', level: 95 },
-                { name: 'CSS/SCSS', level: 90 },
-                { name: 'HTML5', level: 95 },
-              ];
-              const average = Math.round(skills.reduce((acc, s) => acc + s.level, 0) / skills.length);
-              const isExpanded = expandedSkills['frontend'];
-
-              return (
-                <div style={{ background: '#0f0f0f', border: '1px solid #1a1a1a', borderRadius: '8px', overflow: 'hidden' }}>
-                  <button
-                    onClick={() => setExpandedSkills(prev => ({ ...prev, frontend: !prev.frontend }))}
-                    style={{ width: '100%', padding: '16px', background: 'transparent', border: 'none', cursor: 'pointer', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
-                  >
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                      <p style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '1px', color: '#666', margin: 0 }}>FRONTEND</p>
-                      <span style={{ fontSize: '13px', color: '#ff6b35', fontWeight: 600 }}>{average}%</span>
-                    </div>
-                    <span style={{ color: '#666', fontSize: '20px', transform: isExpanded ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.2s' }}>▼</span>
-                  </button>
-                  {isExpanded && (
-                    <div style={{ padding: '0 16px 16px 16px', display: 'grid', gap: '12px' }}>
-                      {skills.map((skill) => (
-                        <div key={skill.name}>
-                          <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '6px' }}>
-                            <span style={{ fontSize: '14px', color: '#e5e5e5' }}>{skill.name}</span>
-                            <span style={{ fontSize: '14px', color: '#666' }}>{skill.level}%</span>
-                          </div>
-                          <div style={{ width: '100%', height: '6px', background: '#1a1a1a', borderRadius: '3px', overflow: 'hidden' }}>
-                            <div style={{ width: `${skill.level}%`, height: '100%', background: '#ff6b35', borderRadius: '3px' }}></div>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              );
-            })()}
-
-{/* Mobile */}
-            {(() => {
-              const skills = [
-                { name: 'React Native', level: 90 },
-                { name: 'Expo', level: 88 },
-                { name: 'iOS Development', level: 82 },
-                { name: 'Android Development', level: 82 },
-              ];
-              const average = Math.round(skills.reduce((acc, s) => acc + s.level, 0) / skills.length);
-              const isExpanded = expandedSkills['mobile'];
-              return (
-                <div style={{ background: '#0f0f0f', border: '1px solid #1a1a1a', borderRadius: '8px', overflow: 'hidden' }}>
-                  <button onClick={() => setExpandedSkills(prev => ({ ...prev, mobile: !prev.mobile }))} style={{ width: '100%', padding: '16px', background: 'transparent', border: 'none', cursor: 'pointer', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                      <p style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '1px', color: '#666', margin: 0 }}>MOBILE</p>
-                      <span style={{ fontSize: '13px', color: '#ff6b35', fontWeight: 600 }}>{average}%</span>
-                    </div>
-                    <span style={{ color: '#666', fontSize: '20px', transform: isExpanded ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.2s' }}>▼</span>
-                  </button>
-                  {isExpanded && (
-                    <div style={{ padding: '0 16px 16px 16px', display: 'grid', gap: '12px' }}>
-                      {skills.map((skill) => (
-                        <div key={skill.name}>
-                          <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '6px' }}>
-                            <span style={{ fontSize: '14px', color: '#e5e5e5' }}>{skill.name}</span>
-                            <span style={{ fontSize: '14px', color: '#666' }}>{skill.level}%</span>
-                          </div>
-                          <div style={{ width: '100%', height: '6px', background: '#1a1a1a', borderRadius: '3px', overflow: 'hidden' }}>
-                            <div style={{ width: `${skill.level}%`, height: '100%', background: '#ff6b35', borderRadius: '3px' }}></div>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              );
-            })()}
+            {/* Mobile */}
+            <div style={{ background: '#0f0f0f', border: '1px solid #1a1a1a', borderRadius: '8px', padding: '20px' }}>
+              <p style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '1px', color: '#666', marginBottom: '16px' }}>MOBILE</p>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                {['React Native', 'Expo', 'iOS Development', 'Android Development'].map((skill) => (
+                  <span key={skill} className="tool-tag">{skill}</span>
+                ))}
+              </div>
+            </div>
 
             {/* Backend */}
-            {(() => {
-              const skills = [
-                { name: 'Node.js', level: 85 },
-                { name: 'Express', level: 83 },
-                { name: 'REST APIs', level: 87 },
-                { name: 'GraphQL', level: 75 },
-                { name: 'WebSockets', level: 80 },
-              ];
-              const average = Math.round(skills.reduce((acc, s) => acc + s.level, 0) / skills.length);
-              const isExpanded = expandedSkills['backend'];
-              return (
-                <div style={{ background: '#0f0f0f', border: '1px solid #1a1a1a', borderRadius: '8px', overflow: 'hidden' }}>
-                  <button onClick={() => setExpandedSkills(prev => ({ ...prev, backend: !prev.backend }))} style={{ width: '100%', padding: '16px', background: 'transparent', border: 'none', cursor: 'pointer', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                      <p style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '1px', color: '#666', margin: 0 }}>BACKEND</p>
-                      <span style={{ fontSize: '13px', color: '#ff6b35', fontWeight: 600 }}>{average}%</span>
-                    </div>
-                    <span style={{ color: '#666', fontSize: '20px', transform: isExpanded ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.2s' }}>▼</span>
-                  </button>
-                  {isExpanded && (
-                    <div style={{ padding: '0 16px 16px 16px', display: 'grid', gap: '12px' }}>
-                      {skills.map((skill) => (
-                        <div key={skill.name}>
-                          <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '6px' }}>
-                            <span style={{ fontSize: '14px', color: '#e5e5e5' }}>{skill.name}</span>
-                            <span style={{ fontSize: '14px', color: '#666' }}>{skill.level}%</span>
-                          </div>
-                          <div style={{ width: '100%', height: '6px', background: '#1a1a1a', borderRadius: '3px', overflow: 'hidden' }}>
-                            <div style={{ width: `${skill.level}%`, height: '100%', background: '#ff6b35', borderRadius: '3px' }}></div>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              );
-            })()}
+            <div style={{ background: '#0f0f0f', border: '1px solid #1a1a1a', borderRadius: '8px', padding: '20px' }}>
+              <p style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '1px', color: '#666', marginBottom: '16px' }}>BACKEND</p>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                {['Node.js', 'Express', 'REST APIs', 'GraphQL', 'WebSockets'].map((skill) => (
+                  <span key={skill} className="tool-tag">{skill}</span>
+                ))}
+              </div>
+            </div>
 
             {/* Database */}
-            {(() => {
-              const skills = [
-                { name: 'PostgreSQL', level: 82 },
-                { name: 'MongoDB', level: 82 },
-                { name: 'Redis', level: 78 },
-                { name: 'Prisma', level: 80 },
-              ];
-              const average = Math.round(skills.reduce((acc, s) => acc + s.level, 0) / skills.length);
-              const isExpanded = expandedSkills['database'];
-              return (
-                <div style={{ background: '#0f0f0f', border: '1px solid #1a1a1a', borderRadius: '8px', overflow: 'hidden' }}>
-                  <button onClick={() => setExpandedSkills(prev => ({ ...prev, database: !prev.database }))} style={{ width: '100%', padding: '16px', background: 'transparent', border: 'none', cursor: 'pointer', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                      <p style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '1px', color: '#666', margin: 0 }}>DATABASE</p>
-                      <span style={{ fontSize: '13px', color: '#ff6b35', fontWeight: 600 }}>{average}%</span>
-                    </div>
-                    <span style={{ color: '#666', fontSize: '20px', transform: isExpanded ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.2s' }}>▼</span>
-                  </button>
-                  {isExpanded && (
-                    <div style={{ padding: '0 16px 16px 16px', display: 'grid', gap: '12px' }}>
-                      {skills.map((skill) => (
-                        <div key={skill.name}>
-                          <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '6px' }}>
-                            <span style={{ fontSize: '14px', color: '#e5e5e5' }}>{skill.name}</span>
-                            <span style={{ fontSize: '14px', color: '#666' }}>{skill.level}%</span>
-                          </div>
-                          <div style={{ width: '100%', height: '6px', background: '#1a1a1a', borderRadius: '3px', overflow: 'hidden' }}>
-                            <div style={{ width: `${skill.level}%`, height: '100%', background: '#ff6b35', borderRadius: '3px' }}></div>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              );
-            })()}
+            <div style={{ background: '#0f0f0f', border: '1px solid #1a1a1a', borderRadius: '8px', padding: '20px' }}>
+              <p style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '1px', color: '#666', marginBottom: '16px' }}>DATABASE</p>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                {['PostgreSQL', 'MongoDB', 'Redis', 'Prisma'].map((skill) => (
+                  <span key={skill} className="tool-tag">{skill}</span>
+                ))}
+              </div>
+            </div>
 
             {/* Web3 & Blockchain */}
-            {(() => {
-              const skills = [
-                { name: 'Anchor Framework', level: 85 },
-                { name: 'Web3.js', level: 82 },
-                { name: 'Smart Contracts', level: 78 },
-                { name: 'Wallet Integration', level: 88 },
-                { name: 'ZK-SNARKs', level: 72 },
-              ];
-              const average = Math.round(skills.reduce((acc, s) => acc + s.level, 0) / skills.length);
-              const isExpanded = expandedSkills['web3'];
-              return (
-                <div style={{ background: '#0f0f0f', border: '1px solid #1a1a1a', borderRadius: '8px', overflow: 'hidden' }}>
-                  <button onClick={() => setExpandedSkills(prev => ({ ...prev, web3: !prev.web3 }))} style={{ width: '100%', padding: '16px', background: 'transparent', border: 'none', cursor: 'pointer', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                      <p style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '1px', color: '#666', margin: 0 }}>WEB3 & BLOCKCHAIN</p>
-                      <span style={{ fontSize: '13px', color: '#ff6b35', fontWeight: 600 }}>{average}%</span>
-                    </div>
-                    <span style={{ color: '#666', fontSize: '20px', transform: isExpanded ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.2s' }}>▼</span>
-                  </button>
-                  {isExpanded && (
-                    <div style={{ padding: '0 16px 16px 16px', display: 'grid', gap: '12px' }}>
-                      {skills.map((skill) => (
-                        <div key={skill.name}>
-                          <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '6px' }}>
-                            <span style={{ fontSize: '14px', color: '#e5e5e5' }}>{skill.name}</span>
-                            <span style={{ fontSize: '14px', color: '#666' }}>{skill.level}%</span>
-                          </div>
-                          <div style={{ width: '100%', height: '6px', background: '#1a1a1a', borderRadius: '3px', overflow: 'hidden' }}>
-                            <div style={{ width: `${skill.level}%`, height: '100%', background: '#ff6b35', borderRadius: '3px' }}></div>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              );
-            })()}
+            <div style={{ background: '#0f0f0f', border: '1px solid #1a1a1a', borderRadius: '8px', padding: '20px' }}>
+              <p style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '1px', color: '#666', marginBottom: '16px' }}>WEB3 & BLOCKCHAIN</p>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                {['Anchor Framework', 'Web3.js', 'Smart Contracts', 'Wallet Integration', 'ZK-SNARKs'].map((skill) => (
+                  <span key={skill} className="tool-tag">{skill}</span>
+                ))}
+              </div>
+            </div>
 
             {/* DevOps & Tools */}
-            {(() => {
-              const skills = [
-                { name: 'Git & GitHub', level: 90 },
-                { name: 'Docker', level: 80 },
-                { name: 'AWS', level: 78 },
-                { name: 'Vercel', level: 88 },
-              ];
-              const average = Math.round(skills.reduce((acc, s) => acc + s.level, 0) / skills.length);
-              const isExpanded = expandedSkills['devops'];
-              return (
-                <div style={{ background: '#0f0f0f', border: '1px solid #1a1a1a', borderRadius: '8px', overflow: 'hidden' }}>
-                  <button onClick={() => setExpandedSkills(prev => ({ ...prev, devops: !prev.devops }))} style={{ width: '100%', padding: '16px', background: 'transparent', border: 'none', cursor: 'pointer', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                      <p style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '1px', color: '#666', margin: 0 }}>DEVOPS & TOOLS</p>
-                      <span style={{ fontSize: '13px', color: '#ff6b35', fontWeight: 600 }}>{average}%</span>
-                    </div>
-                    <span style={{ color: '#666', fontSize: '20px', transform: isExpanded ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.2s' }}>▼</span>
-                  </button>
-                  {isExpanded && (
-                    <div style={{ padding: '0 16px 16px 16px', display: 'grid', gap: '12px' }}>
-                      {skills.map((skill) => (
-                        <div key={skill.name}>
-                          <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '6px' }}>
-                            <span style={{ fontSize: '14px', color: '#e5e5e5' }}>{skill.name}</span>
-                            <span style={{ fontSize: '14px', color: '#666' }}>{skill.level}%</span>
-                          </div>
-                          <div style={{ width: '100%', height: '6px', background: '#1a1a1a', borderRadius: '3px', overflow: 'hidden' }}>
-                            <div style={{ width: `${skill.level}%`, height: '100%', background: '#ff6b35', borderRadius: '3px' }}></div>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              );
-            })()}
+            <div style={{ background: '#0f0f0f', border: '1px solid #1a1a1a', borderRadius: '8px', padding: '20px' }}>
+              <p style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '1px', color: '#666', marginBottom: '16px' }}>DEVOPS & TOOLS</p>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                {['Git & GitHub', 'Docker', 'AWS', 'Vercel'].map((skill) => (
+                  <span key={skill} className="tool-tag">{skill}</span>
+                ))}
+              </div>
+            </div>
           </div>
         </section>
 
