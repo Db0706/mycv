@@ -1,31 +1,13 @@
 'use client';
 
-import { LimelightNav } from '@/components/ui/limelight-nav';
-import { Home, Folder, Code2, Activity, Mail } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { fetchGitHubContributions, type GitHubStats } from '@/lib/github';
 
 export default function Portfolio() {
-  const [activeSection, setActiveSection] = useState(0);
   const [githubData, setGithubData] = useState<GitHubStats | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-
-  const navItems = [
-    { id: 'focus', icon: <Home />, label: 'Focus', onClick: () => scrollToSection('focus') },
-    { id: 'projects', icon: <Folder />, label: 'Projects', onClick: () => scrollToSection('projects') },
-    { id: 'skills', icon: <Code2 />, label: 'Skills', onClick: () => scrollToSection('skills') },
-    { id: 'activity', icon: <Activity />, label: 'Activity', onClick: () => scrollToSection('activity') },
-    { id: 'contact', icon: <Mail />, label: 'Contact', onClick: () => window.open('https://t.me/deandev10', '_blank') },
-  ];
-
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  };
 
   useEffect(() => {
     // Fetch live GitHub data
@@ -248,13 +230,6 @@ export default function Portfolio() {
           color: #e5e5e5;
         }
 
-        .mobile-nav-wrapper {
-          display: none;
-          visibility: hidden;
-          opacity: 0;
-          pointer-events: none;
-        }
-
         /* Mobile Responsive Styles */
         @media (max-width: 768px) {
           * {
@@ -262,7 +237,7 @@ export default function Portfolio() {
           }
 
           main {
-            padding: 40px 16px 100px 16px !important;
+            padding: 40px 16px !important;
             max-width: 100vw !important;
             overflow-x: hidden !important;
           }
@@ -281,7 +256,13 @@ export default function Portfolio() {
           }
 
           .email-button {
-            display: none !important;
+            padding: 10px 16px !important;
+            font-size: 14px !important;
+          }
+
+          .email-button svg {
+            width: 16px !important;
+            height: 16px !important;
           }
 
           h1 {
@@ -333,51 +314,6 @@ export default function Portfolio() {
           .contribution-wrapper {
             padding: 16px !important;
           }
-
-          .mobile-nav-wrapper {
-            display: flex !important;
-            visibility: visible !important;
-            opacity: 1 !important;
-            pointer-events: all !important;
-            justify-content: center !important;
-            align-items: center !important;
-            position: fixed !important;
-            bottom: 0 !important;
-            left: 0 !important;
-            right: 0 !important;
-            width: 100vw !important;
-            max-width: 100vw !important;
-            height: auto !important;
-            margin: 0 !important;
-            padding: 0 !important;
-            padding-bottom: env(safe-area-inset-bottom, 0) !important;
-            background: #000000 !important;
-            backdrop-filter: blur(12px) !important;
-            -webkit-backdrop-filter: blur(12px) !important;
-            border-top: 1px solid #1a1a1a !important;
-            z-index: 10000 !important;
-            transform: translate3d(0, 0, 0) !important;
-            -webkit-transform: translate3d(0, 0, 0) !important;
-            will-change: transform !important;
-            backface-visibility: hidden !important;
-            -webkit-backface-visibility: hidden !important;
-            box-sizing: border-box !important;
-          }
-
-          .mobile-nav-wrapper nav {
-            width: 100% !important;
-            max-width: 100% !important;
-            border-radius: 0 !important;
-            border-left: none !important;
-            border-right: none !important;
-            border-bottom: none !important;
-            margin: 0 !important;
-            padding: 12px 0 !important;
-          }
-
-          footer {
-            padding-bottom: 100px !important;
-          }
         }
 
         @media (max-width: 480px) {
@@ -388,12 +324,6 @@ export default function Portfolio() {
 
           h1 {
             font-size: 24px !important;
-          }
-        }
-
-        @media (min-width: 769px) {
-          .mobile-nav-wrapper {
-            display: none !important;
           }
         }
       `}</style>
@@ -422,17 +352,6 @@ export default function Portfolio() {
           </div>
         </div>
       </header>
-
-      {/* Mobile Navigation with LimelightNav */}
-      <div className="mobile-nav-wrapper">
-        <LimelightNav
-          items={navItems}
-          defaultActiveIndex={0}
-          onTabChange={(index) => setActiveSection(index)}
-          className="bg-black border-none text-white w-full rounded-none"
-          iconClassName="text-white"
-        />
-      </div>
 
       {/* Main Content */}
       <main style={{ maxWidth: '680px', margin: '0 auto', padding: '80px 24px' }}>
