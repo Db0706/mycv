@@ -697,7 +697,7 @@ export default function Portfolio() {
               <div className="activity-item">
                 <p style={{ fontSize: '14px', color: '#666' }}>Loading recent activity...</p>
               </div>
-            ) : githubData && githubData.recentActivity.length > 0 ? (
+            ) : githubData && githubData.recentActivity.length > 0 && (
               githubData.recentActivity.map((activity, index) => (
                 <div key={index} className="activity-item">
                   <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '8px' }}>
@@ -707,10 +707,6 @@ export default function Portfolio() {
                   <p style={{ fontSize: '14px', color: '#999' }}>{activity.message}</p>
                 </div>
               ))
-            ) : (
-              <div className="activity-item">
-                <p style={{ fontSize: '14px', color: '#666' }}>No recent activity found</p>
-              </div>
             )}
           </div>
         </section>
