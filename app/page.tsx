@@ -455,7 +455,7 @@ export default function Portfolio() {
           </h1>
 
           <p style={{ fontSize: '15px', color: '#999', marginBottom: '20px' }}>
-            Senior Full-Stack Developer. Product architect. Smart-contracts & dev tooling. AI-accelerated: crafts and ships faster than most teams scope.
+            Senior Full-Stack Developer. Product architect. Smart-contracts & dev tooling. AI-accelerated: crafts and ships faster than most teams can scope.
           </p>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '24px', fontSize: '13px', color: '#666' }}>
