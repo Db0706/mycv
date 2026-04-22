@@ -401,8 +401,7 @@ export default function Portfolio() {
 
         {/* Recent Activity */}
         <section id="activity" style={{ marginBottom: '40px' }}>
-          <h2 style={{ fontSize: '28px', fontWeight: 700, color: '#e5e5e5', marginBottom: '8px' }}>Recent activity</h2>
-          <p style={{ fontSize: '15px', color: '#999', marginBottom: '24px' }}>Latest pushes across my public and private repos.</p>
+          <h2 style={{ fontSize: '28px', fontWeight: 700, color: '#e5e5e5', marginBottom: '24px' }}>Recent activity</h2>
 
           {/* GitHub Contribution Graph */}
           <div className="contribution-wrapper" style={{ background: '#0f0f0f', border: '1px solid #1a1a1a', borderRadius: '8px', padding: '24px', marginBottom: '24px' }}>
@@ -445,8 +444,7 @@ export default function Portfolio() {
 
         {/* Skills */}
         <section id="skills" style={{ marginBottom: '120px' }}>
-          <h2 style={{ fontSize: '28px', fontWeight: 700, color: '#e5e5e5', marginBottom: '8px' }}>Skills</h2>
-          <p style={{ fontSize: '15px', color: '#999', marginBottom: '24px' }}>Technologies and tools I work with.</p>
+          <h2 style={{ fontSize: '28px', fontWeight: 700, color: '#e5e5e5', marginBottom: '24px' }}>Skills</h2>
 
           <div style={{ display: 'grid', gap: '16px' }}>
             {/* Languages */}
@@ -550,8 +548,7 @@ export default function Portfolio() {
 
         {/* Projects */}
         <section id="projects" style={{ marginBottom: '120px' }}>
-          <h2 style={{ fontSize: '28px', fontWeight: 700, color: '#e5e5e5', marginBottom: '8px' }}>Projects</h2>
-          <p style={{ fontSize: '15px', color: '#999', marginBottom: '24px' }}>Portfolio of built products and platforms.</p>
+          <h2 style={{ fontSize: '28px', fontWeight: 700, color: '#e5e5e5', marginBottom: '24px' }}>Projects</h2>
 
           {/* Active Projects */}
           <p style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '1px', color: '#666', marginBottom: '12px', marginTop: '32px' }}>ACTIVE</p>
