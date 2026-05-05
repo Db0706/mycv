@@ -451,7 +451,7 @@ export default function Portfolio() {
             <div style={{ background: '#0f0f0f', border: '1px solid #1a1a1a', borderRadius: '8px', padding: '20px' }}>
               <p style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '1px', color: '#666', marginBottom: '16px' }}>LANGUAGES</p>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
-                {['TypeScript', 'JavaScript', 'Rust', 'Python', 'C++', 'Solidity'].map((skill) => (
+                {['TypeScript', 'JavaScript', 'Rust', 'Python', 'C++', 'C#', 'Solidity', 'Go', 'SQL', 'Bash'].map((skill) => (
                   <span key={skill} className="tool-tag">{skill}</span>
                 ))}
               </div>
@@ -461,7 +461,7 @@ export default function Portfolio() {
             <div style={{ background: '#0f0f0f', border: '1px solid #1a1a1a', borderRadius: '8px', padding: '20px' }}>
               <p style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '1px', color: '#666', marginBottom: '16px' }}>FRONTEND</p>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
-                {['React', 'Next.js', 'Tailwind CSS', 'CSS/SCSS', 'HTML5'].map((skill) => (
+                {['React', 'Next.js', 'Vue', 'Svelte', 'Tailwind CSS', 'shadcn/ui', 'Framer Motion', 'Vite'].map((skill) => (
                   <span key={skill} className="tool-tag">{skill}</span>
                 ))}
               </div>
@@ -471,7 +471,7 @@ export default function Portfolio() {
             <div style={{ background: '#0f0f0f', border: '1px solid #1a1a1a', borderRadius: '8px', padding: '20px' }}>
               <p style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '1px', color: '#666', marginBottom: '16px' }}>MOBILE</p>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
-                {['React Native', 'Expo', 'iOS Development', 'Android Development'].map((skill) => (
+                {['React Native', 'Expo', 'Swift', 'Kotlin', 'Push Notifications', 'App Store / Play Store'].map((skill) => (
                   <span key={skill} className="tool-tag">{skill}</span>
                 ))}
               </div>
@@ -481,7 +481,7 @@ export default function Portfolio() {
             <div style={{ background: '#0f0f0f', border: '1px solid #1a1a1a', borderRadius: '8px', padding: '20px' }}>
               <p style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '1px', color: '#666', marginBottom: '16px' }}>BACKEND</p>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
-                {['Node.js', 'Express', 'REST APIs', 'GraphQL', 'WebSockets'].map((skill) => (
+                {['Node.js', 'Express', 'REST APIs', 'GraphQL', 'WebSockets', 'gRPC', 'Microservices', 'Auth (OAuth / JWT)', 'Stripe', 'Queues (BullMQ / Kafka)'].map((skill) => (
                   <span key={skill} className="tool-tag">{skill}</span>
                 ))}
               </div>
@@ -491,7 +491,7 @@ export default function Portfolio() {
             <div style={{ background: '#0f0f0f', border: '1px solid #1a1a1a', borderRadius: '8px', padding: '20px' }}>
               <p style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '1px', color: '#666', marginBottom: '16px' }}>DATABASE</p>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
-                {['PostgreSQL', 'MongoDB', 'Redis', 'Prisma'].map((skill) => (
+                {['PostgreSQL', 'MySQL', 'MongoDB', 'Redis', 'SQLite', 'Supabase', 'Prisma'].map((skill) => (
                   <span key={skill} className="tool-tag">{skill}</span>
                 ))}
               </div>
@@ -501,17 +501,47 @@ export default function Portfolio() {
             <div style={{ background: '#0f0f0f', border: '1px solid #1a1a1a', borderRadius: '8px', padding: '20px' }}>
               <p style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '1px', color: '#666', marginBottom: '16px' }}>WEB3 & BLOCKCHAIN</p>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
-                {['Anchor Framework', 'Web3.js', 'Smart Contracts', 'Wallet Integration', 'ZK-SNARKs'].map((skill) => (
+                {['Solana', 'Anchor', 'EVM', 'Hardhat', 'Ethers.js', 'Web3.js', 'Smart Contracts', 'Wallet Integration', 'ZK-SNARKs', 'MEV / Trading Bots'].map((skill) => (
                   <span key={skill} className="tool-tag">{skill}</span>
                 ))}
               </div>
             </div>
 
-            {/* DevOps & Tools */}
+            {/* AI & Tooling */}
             <div style={{ background: '#0f0f0f', border: '1px solid #1a1a1a', borderRadius: '8px', padding: '20px' }}>
-              <p style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '1px', color: '#666', marginBottom: '16px' }}>DEVOPS & TOOLS</p>
+              <p style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '1px', color: '#666', marginBottom: '16px' }}>AI & TOOLING</p>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
-                {['Git & GitHub', 'Docker', 'AWS', 'Vercel'].map((skill) => (
+                {['Claude API', 'OpenAI API', 'Claude Code', 'Cursor', 'Agent Workflows', 'Tool Use', 'Prompt Engineering'].map((skill) => (
+                  <span key={skill} className="tool-tag">{skill}</span>
+                ))}
+              </div>
+            </div>
+
+            {/* Game Dev */}
+            <div style={{ background: '#0f0f0f', border: '1px solid #1a1a1a', borderRadius: '8px', padding: '20px' }}>
+              <p style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '1px', color: '#666', marginBottom: '16px' }}>GAME DEV</p>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                {['Unity', 'Godot', 'C++', 'C#', 'Shader Programming', 'Multiplayer Networking', 'Game AI', 'Procedural Generation'].map((skill) => (
+                  <span key={skill} className="tool-tag">{skill}</span>
+                ))}
+              </div>
+            </div>
+
+            {/* DevOps & Infra */}
+            <div style={{ background: '#0f0f0f', border: '1px solid #1a1a1a', borderRadius: '8px', padding: '20px' }}>
+              <p style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '1px', color: '#666', marginBottom: '16px' }}>DEVOPS & INFRA</p>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                {['Git & GitHub', 'Docker', 'AWS', 'GCP', 'Vercel', 'Cloudflare', 'CI/CD (GitHub Actions)', 'Linux', 'Monitoring (Grafana / Sentry)'].map((skill) => (
+                  <span key={skill} className="tool-tag">{skill}</span>
+                ))}
+              </div>
+            </div>
+
+            {/* Currently Mastering */}
+            <div style={{ background: '#0f0f0f', border: '1px solid #1a1a1a', borderRadius: '8px', padding: '20px' }}>
+              <p style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '1px', color: '#666', marginBottom: '16px' }}>CURRENTLY MASTERING</p>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                {['tRPC', 'Viem', 'Wagmi', 'Foundry', 'RAG', 'MCP', 'Terraform'].map((skill) => (
                   <span key={skill} className="tool-tag">{skill}</span>
                 ))}
               </div>
