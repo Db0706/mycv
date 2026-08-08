@@ -13,9 +13,14 @@ export default function Portfolio() {
     // Fetch live GitHub data
     const loadGitHubData = async () => {
       setIsLoading(true);
-      const data = await fetchGitHubContributions();
-      setGithubData(data);
-      setIsLoading(false);
+      try {
+        const data = await fetchGitHubContributions();
+        setGithubData(data);
+      } catch {
+        setGithubData(null);
+      } finally {
+        setIsLoading(false);
+      }
     };
 
     loadGitHubData();
@@ -339,6 +344,7 @@ export default function Portfolio() {
                 <a href="#focus" className="nav-link">FOCUS</a>
                 <a href="#projects" className="nav-link">PROJECTS</a>
                 <a href="#skills" className="nav-link">SKILLS</a>
+                <a href="#content" className="nav-link">CONTENT</a>
                 <a href="#activity" className="nav-link">ACTIVITY</a>
               </nav>
 
@@ -374,7 +380,7 @@ export default function Portfolio() {
           </div>
 
           <p style={{ fontSize: '15px', color: '#999', marginBottom: '20px' }}>
-            Senior Full-Stack Developer. Product architect. Smart-contracts & dev tooling. AI-accelerated: crafts and ships faster than most teams can scope.
+            No bullsh*t product engineer. AI-Native builder: web, mobile, smart contracts.
           </p>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '24px', fontSize: '13px', color: '#666' }}>
@@ -384,22 +390,82 @@ export default function Portfolio() {
             <span>/</span>
             <a href="https://www.tiktok.com/@deandev10?_r=1&_t=ZN-95cRMQBAdDW" target="_blank" style={{ color: '#999', transition: 'color 0.2s' }}>TikTok</a>
             <span>/</span>
+            <a href="https://www.youtube.com/@deandev10" target="_blank" style={{ color: '#999', transition: 'color 0.2s' }}>YouTube</a>
+            <span>/</span>
             <a href="https://github.com/DB0706" target="_blank" style={{ color: '#999', transition: 'color 0.2s' }}>GitHub</a>
           </div>
 
-          <div style={{ display: 'flex', gap: '32px', marginBottom: '48px' }}>
+          <div style={{ display: 'flex', gap: '32px', marginBottom: '48px', flexWrap: 'wrap' }}>
             <div>
-              <p style={{ fontSize: '13px', color: '#666' }}>Scaled apps from 0 to 40k+ users as a solo dev</p>
+              <p style={{ fontSize: '13px', color: '#666' }}>Scaled 0-40k users as a solo dev</p>
             </div>
+            {(isLoading || githubData) && (
+              <div>
+                <p style={{ fontSize: '13px', color: '#666' }}>
+                  {isLoading ? 'Loading...' : `${githubData?.totalContributions}+ commits (12mo)`}
+                </p>
+              </div>
+            )}
+          </div>
+
+          <div style={{ display: 'grid', gap: '28px', marginTop: '-16px', marginBottom: '48px' }}>
             <div>
-              <p style={{ fontSize: '13px', color: '#666' }}>
-                {isLoading ? 'Loading...' : `${githubData?.totalContributions || 0}+ commits (12mo)`}
+              <p style={{ fontSize: '14px', fontWeight: 600, color: '#e5e5e5', marginBottom: '6px' }}>What you need to know before contracting me:</p>
+              <p style={{ fontSize: '14px', color: '#999', lineHeight: 1.7, margin: 0 }}>I sprint. Slowing me down is billable.</p>
+            </div>
+
+            <div>
+              <p style={{ fontSize: '14px', fontWeight: 600, color: '#e5e5e5', marginBottom: '6px' }}>What you need to give me:</p>
+              <p style={{ fontSize: '14px', color: '#999', lineHeight: 1.7, margin: 0 }}>
+                A. A detailed list of every feature you want<br />
+                B. Nothing<br />
+                C. Something in between
               </p>
+              <p style={{ fontSize: '14px', color: '#999', lineHeight: 1.7, marginTop: '8px', marginBottom: 0 }}>Just give me whatever info or ideas you have. I&apos;ll run with it.</p>
+              <div style={{ background: '#0f0f0f', border: '1px solid #1a1a1a', borderRadius: '8px', padding: '16px', marginTop: '12px' }}>
+                <p style={{ fontSize: '13px', color: '#999', fontStyle: 'italic', margin: 0 }}>&quot;Uber, but for dog walking.&quot;</p>
+                <p style={{ fontSize: '12px', color: '#666', marginTop: '8px', marginBottom: 0 }}>One line like this is a perfectly good starting point. A brief this size is now a full product in beta.</p>
+              </div>
             </div>
+
+            <div>
+              <p style={{ fontSize: '14px', fontWeight: 600, color: '#e5e5e5', marginBottom: '6px' }}>What I actually do:</p>
+              <p style={{ fontSize: '14px', color: '#999', lineHeight: 1.7, margin: 0 }}>I&apos;m a product engineer, not just a dev. Whatever tool gets the job done, I&apos;ll use it. I don&apos;t limit myself to one stack.</p>
+            </div>
+
+            <div>
+              <p style={{ fontSize: '14px', fontWeight: 600, color: '#e5e5e5', marginBottom: '6px' }}>For one-off builds / MVPs:</p>
+              <p style={{ fontSize: '14px', color: '#999', lineHeight: 1.7, margin: 0 }}>Tell me the end goal. I&apos;ll ship clean, working code, fast. You don&apos;t need to manage me, check in on me, or explain the &quot;why&quot; three times.</p>
+            </div>
+
+            <div>
+              <p style={{ fontSize: '14px', fontWeight: 600, color: '#e5e5e5', marginBottom: '6px' }}>For long-term / retainer contracts:</p>
+              <p style={{ fontSize: '14px', color: '#999', lineHeight: 1.7, margin: 0 }}>Tell me what your business looks like when it&apos;s successful. I&apos;ll make sure your product gets you there.</p>
+            </div>
+
+            <div>
+              <p style={{ fontSize: '14px', fontWeight: 600, color: '#e5e5e5', marginBottom: '6px' }}>I fit best with teams/founders who:</p>
+              <ul style={{ margin: 0, padding: 0, listStyle: 'none', fontSize: '14px', color: '#999', lineHeight: 1.8 }}>
+                <li style={{ display: 'flex', gap: '8px' }}><span style={{ color: '#ff6b35' }}>•</span>Need an MVP to show proof of concept</li>
+                <li style={{ display: 'flex', gap: '8px' }}><span style={{ color: '#ff6b35' }}>•</span>Want expert clean up on an existing mess</li>
+                <li style={{ display: 'flex', gap: '8px' }}><span style={{ color: '#ff6b35' }}>•</span>Value speed and results over process and updates</li>
+              </ul>
+            </div>
+
+            <div>
+              <p style={{ fontSize: '14px', fontWeight: 600, color: '#e5e5e5', marginBottom: '6px' }}>I&apos;m not the right fit if you:</p>
+              <ul style={{ margin: 0, padding: 0, listStyle: 'none', fontSize: '14px', color: '#999', lineHeight: 1.8 }}>
+                <li style={{ display: 'flex', gap: '8px' }}><span style={{ color: '#ff6b35' }}>•</span>Need to micromanage sprints</li>
+                <li style={{ display: 'flex', gap: '8px' }}><span style={{ color: '#ff6b35' }}>•</span>Want me to sit in every meeting that doesn&apos;t concern me</li>
+                <li style={{ display: 'flex', gap: '8px' }}><span style={{ color: '#ff6b35' }}>•</span>Often have to wait for opinions and approval from other people on your side</li>
+              </ul>
+            </div>
+
           </div>
         </section>
 
         {/* Recent Activity */}
+        {(isLoading || githubData) && (
         <section id="activity" style={{ marginBottom: '40px' }}>
           <h2 style={{ fontSize: '28px', fontWeight: 700, color: '#e5e5e5', marginBottom: '24px' }}>Recent activity</h2>
 
@@ -441,111 +507,57 @@ export default function Portfolio() {
             )}
           </div>
         </section>
+        )}
 
         {/* Skills */}
         <section id="skills" style={{ marginBottom: '120px' }}>
           <h2 style={{ fontSize: '28px', fontWeight: 700, color: '#e5e5e5', marginBottom: '24px' }}>Skills</h2>
 
           <div style={{ display: 'grid', gap: '16px' }}>
-            {/* Languages */}
-            <div style={{ background: '#0f0f0f', border: '1px solid #1a1a1a', borderRadius: '8px', padding: '20px' }}>
-              <p style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '1px', color: '#666', marginBottom: '16px' }}>LANGUAGES</p>
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
-                {['TypeScript', 'JavaScript', 'Rust', 'Python', 'C++', 'C#', 'Solidity', 'Go', 'SQL', 'Bash'].map((skill) => (
-                  <span key={skill} className="tool-tag">{skill}</span>
-                ))}
+            {[
+              {
+                title: 'Full-Stack Product',
+                proof: 'Shipped and scaled products solo from 0 to 40k+ users.',
+                tags: ['TypeScript', 'Next.js', 'React', 'Node.js', 'PostgreSQL', 'Redis', 'Prisma / Drizzle', 'Stripe', 'WebSockets', 'Tailwind CSS'],
+              },
+              {
+                title: 'Mobile',
+                proof: 'iOS apps from first commit to App Store and TestFlight beta.',
+                tags: ['React Native', 'Expo', 'Swift', 'Kotlin', 'Push Notifications', 'Live Geolocation', 'App Store / Play Store'],
+              },
+              {
+                title: 'Web3 & Smart Contracts',
+                proof: 'Wallet infra, provably fair gaming, trading systems, and ZK cryptography in production.',
+                tags: ['Solana', 'Anchor', 'Rust', 'EVM', 'Solidity', 'Wallet Integration', 'ZK-SNARKs', 'MEV / Trading Bots', 'Provably Fair Systems'],
+              },
+              {
+                title: 'Systems & Infrastructure',
+                proof: 'Led a team building a custom Android OS, kernel to launcher. Run all my own infra.',
+                tags: ['AOSP', 'C / C++', 'Linux', 'AWS / GCP', 'Docker', 'CI/CD', 'Monitoring (Grafana / Sentry)'],
+              },
+              {
+                title: 'Games & Engines',
+                proof: 'Built a custom AI game engine powering 1.7M+ games played.',
+                tags: ['Custom Engines', 'Unity', 'Godot', 'C#', 'Multiplayer Networking', 'Procedural Generation'],
+              },
+              {
+                title: 'AI Engineering',
+                proof: 'AI pipelines and agents in production products, not just autocomplete.',
+                tags: ['Claude API', 'OpenAI API', 'Agent Workflows', 'MCP', 'RAG', 'Tool Use', 'Generation Pipelines'],
+              },
+            ].map((group) => (
+              <div key={group.title} style={{ background: '#0f0f0f', border: '1px solid #1a1a1a', borderRadius: '8px', padding: '20px' }}>
+                <div style={{ display: 'flex', alignItems: 'baseline', gap: '12px', marginBottom: '6px', flexWrap: 'wrap' }}>
+                  <h3 style={{ fontSize: '15px', fontWeight: 600, color: '#e5e5e5', margin: 0 }}>{group.title}</h3>
+                </div>
+                <p style={{ fontSize: '13px', color: '#ff6b35', marginBottom: '14px', marginTop: 0 }}>{group.proof}</p>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                  {group.tags.map((skill) => (
+                    <span key={skill} className="tool-tag">{skill}</span>
+                  ))}
+                </div>
               </div>
-            </div>
-
-            {/* Frontend */}
-            <div style={{ background: '#0f0f0f', border: '1px solid #1a1a1a', borderRadius: '8px', padding: '20px' }}>
-              <p style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '1px', color: '#666', marginBottom: '16px' }}>FRONTEND</p>
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
-                {['React', 'Next.js', 'Vue', 'Svelte', 'Tailwind CSS', 'shadcn/ui', 'Framer Motion', 'Vite'].map((skill) => (
-                  <span key={skill} className="tool-tag">{skill}</span>
-                ))}
-              </div>
-            </div>
-
-            {/* Mobile */}
-            <div style={{ background: '#0f0f0f', border: '1px solid #1a1a1a', borderRadius: '8px', padding: '20px' }}>
-              <p style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '1px', color: '#666', marginBottom: '16px' }}>MOBILE</p>
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
-                {['React Native', 'Expo', 'Swift', 'Kotlin', 'Push Notifications', 'App Store / Play Store'].map((skill) => (
-                  <span key={skill} className="tool-tag">{skill}</span>
-                ))}
-              </div>
-            </div>
-
-            {/* Backend */}
-            <div style={{ background: '#0f0f0f', border: '1px solid #1a1a1a', borderRadius: '8px', padding: '20px' }}>
-              <p style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '1px', color: '#666', marginBottom: '16px' }}>BACKEND</p>
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
-                {['Node.js', 'Express', 'REST APIs', 'GraphQL', 'WebSockets', 'gRPC', 'Microservices', 'Auth (OAuth / JWT)', 'Stripe', 'Queues (BullMQ / Kafka)'].map((skill) => (
-                  <span key={skill} className="tool-tag">{skill}</span>
-                ))}
-              </div>
-            </div>
-
-            {/* Database */}
-            <div style={{ background: '#0f0f0f', border: '1px solid #1a1a1a', borderRadius: '8px', padding: '20px' }}>
-              <p style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '1px', color: '#666', marginBottom: '16px' }}>DATABASE</p>
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
-                {['PostgreSQL', 'MySQL', 'MongoDB', 'Redis', 'SQLite', 'Supabase', 'Prisma'].map((skill) => (
-                  <span key={skill} className="tool-tag">{skill}</span>
-                ))}
-              </div>
-            </div>
-
-            {/* Web3 & Blockchain */}
-            <div style={{ background: '#0f0f0f', border: '1px solid #1a1a1a', borderRadius: '8px', padding: '20px' }}>
-              <p style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '1px', color: '#666', marginBottom: '16px' }}>WEB3 & BLOCKCHAIN</p>
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
-                {['Solana', 'Anchor', 'EVM', 'Hardhat', 'Ethers.js', 'Web3.js', 'Smart Contracts', 'Wallet Integration', 'ZK-SNARKs', 'MEV / Trading Bots'].map((skill) => (
-                  <span key={skill} className="tool-tag">{skill}</span>
-                ))}
-              </div>
-            </div>
-
-            {/* AI & Tooling */}
-            <div style={{ background: '#0f0f0f', border: '1px solid #1a1a1a', borderRadius: '8px', padding: '20px' }}>
-              <p style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '1px', color: '#666', marginBottom: '16px' }}>AI & TOOLING</p>
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
-                {['Claude API', 'OpenAI API', 'Claude Code', 'Cursor', 'Agent Workflows', 'Tool Use', 'Prompt Engineering'].map((skill) => (
-                  <span key={skill} className="tool-tag">{skill}</span>
-                ))}
-              </div>
-            </div>
-
-            {/* Game Dev */}
-            <div style={{ background: '#0f0f0f', border: '1px solid #1a1a1a', borderRadius: '8px', padding: '20px' }}>
-              <p style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '1px', color: '#666', marginBottom: '16px' }}>GAME DEV</p>
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
-                {['Unity', 'Godot', 'C++', 'C#', 'Shader Programming', 'Multiplayer Networking', 'Game AI', 'Procedural Generation'].map((skill) => (
-                  <span key={skill} className="tool-tag">{skill}</span>
-                ))}
-              </div>
-            </div>
-
-            {/* DevOps & Infra */}
-            <div style={{ background: '#0f0f0f', border: '1px solid #1a1a1a', borderRadius: '8px', padding: '20px' }}>
-              <p style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '1px', color: '#666', marginBottom: '16px' }}>DEVOPS & INFRA</p>
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
-                {['Git & GitHub', 'Docker', 'AWS', 'GCP', 'Vercel', 'Cloudflare', 'CI/CD (GitHub Actions)', 'Linux', 'Monitoring (Grafana / Sentry)'].map((skill) => (
-                  <span key={skill} className="tool-tag">{skill}</span>
-                ))}
-              </div>
-            </div>
-
-            {/* Currently Mastering */}
-            <div style={{ background: '#0f0f0f', border: '1px solid #1a1a1a', borderRadius: '8px', padding: '20px' }}>
-              <p style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '1px', color: '#666', marginBottom: '16px' }}>CURRENTLY MASTERING</p>
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
-                {['tRPC', 'Viem', 'Wagmi', 'Foundry', 'RAG', 'MCP', 'Terraform'].map((skill) => (
-                  <span key={skill} className="tool-tag">{skill}</span>
-                ))}
-              </div>
-            </div>
+            ))}
           </div>
         </section>
 
@@ -553,26 +565,68 @@ export default function Portfolio() {
         <section id="focus" style={{ marginBottom: '120px' }}>
           <p style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '1px', color: '#666', marginBottom: '16px' }}>CURRENT FOCUS</p>
 
+          <p style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '1px', color: '#ff6b35', marginBottom: '12px' }}>MY PRODUCTS</p>
+          <div style={{ display: 'grid', gap: '12px', marginBottom: '32px' }}>
+            <Link href="/projects/slops" className="focus-card" style={{ textDecoration: 'none' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
+                <span className="status-growing" style={{ fontSize: '10px', textTransform: 'uppercase', padding: '4px 8px', borderRadius: '4px', fontWeight: 600, letterSpacing: '0.5px' }}>BETA</span>
+                <span style={{ color: '#333' }}>·</span>
+                <span style={{ fontSize: '11px', color: '#666' }}>Gaming · Web3 · Provably Fair</span>
+              </div>
+              <h3 style={{ fontSize: '18px', fontWeight: 600, color: '#e5e5e5', marginBottom: '8px' }}>SLOPS</h3>
+              <p style={{ fontSize: '14px', color: '#999', lineHeight: 1.6 }}>Provably fair casino app in beta. Built solo end to end: game mechanics, fairness proofs, wallet integration, and go-to-market.</p>
+            </Link>
+          </div>
+
+          <p style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '1px', color: '#ff6b35', marginBottom: '12px' }}>CLIENT WORK</p>
           <div style={{ display: 'grid', gap: '12px' }}>
-            <Link href="/projects/trader-native-os" className="focus-card" style={{ textDecoration: 'none' }}>
+            <Link href="/projects/influence-asap" className="focus-card" style={{ textDecoration: 'none' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
                 <span className="status-building" style={{ fontSize: '10px', textTransform: 'uppercase', padding: '4px 8px', borderRadius: '4px', fontWeight: 600, letterSpacing: '0.5px' }}>BUILDING</span>
                 <span style={{ color: '#333' }}>·</span>
-                <span style={{ fontSize: '11px', color: '#666' }}>Mobile OS · Web3 · Infrastructure</span>
+                <span style={{ fontSize: '11px', color: '#666' }}>Web2 · Marketplace · Client Work</span>
               </div>
-              <h3 style={{ fontSize: '18px', fontWeight: 600, color: '#e5e5e5', marginBottom: '8px' }}>Trader-Native Mobile OS</h3>
-              <p style={{ fontSize: '14px', color: '#999', lineHeight: 1.6 }}>Leading development team building custom Android OS for Web3 traders on native hardware. Currently called PumpOne.</p>
+              <h3 style={{ fontSize: '18px', fontWeight: 600, color: '#e5e5e5', marginBottom: '8px' }}>Influence ASAP</h3>
+              <p style={{ fontSize: '14px', color: '#999', lineHeight: 1.6 }}>KOL-brand matchmaking service, built end to end as a web2 contract. Discovery, deal flow, and campaign management between brands and creators.</p>
             </Link>
 
-            <Link href="/projects/scrolly" className="focus-card" style={{ textDecoration: 'none' }}>
+            <Link href="/projects/myro-walk" className="focus-card" style={{ textDecoration: 'none' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
-                <span className="status-growing" style={{ fontSize: '10px', textTransform: 'uppercase', padding: '4px 8px', borderRadius: '4px', fontWeight: 600, letterSpacing: '0.5px' }}>GROWING</span>
+                <span className="status-growing" style={{ fontSize: '10px', textTransform: 'uppercase', padding: '4px 8px', borderRadius: '4px', fontWeight: 600, letterSpacing: '0.5px' }}>BETA · 85%</span>
                 <span style={{ color: '#333' }}>·</span>
-                <span style={{ fontSize: '11px', color: '#666' }}>AI · Publishing · Infrastructure</span>
+                <span style={{ fontSize: '11px', color: '#666' }}>Mobile · iOS · Client Work</span>
               </div>
-              <h3 style={{ fontSize: '18px', fontWeight: 600, color: '#e5e5e5', marginBottom: '8px' }}>Scrolly</h3>
-              <p style={{ fontSize: '14px', color: '#999', lineHeight: 1.6 }}>Platform empowering anyone to become a game publisher. Full-stack development from 0 to 40k+ users with custom game engine, tournament infrastructure, and B2B dashboard. Next.js, TypeScript, PostgreSQL.</p>
+              <h3 style={{ fontSize: '18px', fontWeight: 600, color: '#e5e5e5', marginBottom: '8px' }}>MYRO Dog Walking App</h3>
+              <p style={{ fontSize: '14px', color: '#999', lineHeight: 1.6 }}>Uber for dog walking, built for the MYRO meme coin community. On-demand matching, live tracking, and payments, now in beta testing.</p>
             </Link>
+          </div>
+        </section>
+
+        {/* Content / Building in Public */}
+        <section id="content" style={{ marginBottom: '120px' }}>
+          <h2 style={{ fontSize: '28px', fontWeight: 700, color: '#e5e5e5', marginBottom: '12px' }}>Learn with Dev<sup style={{ fontSize: '14px' }}>10</sup></h2>
+          <p style={{ fontSize: '15px', color: '#999', lineHeight: 1.7, marginBottom: '24px', maxWidth: '560px' }}>
+            Educational content drawn from my own products: what I built, what worked, and what didn&apos;t. Teaching junior and new devs what correct infrastructure looks like and how to implement it. Client projects stay off camera.
+          </p>
+
+          <div className="focus-grid-mobile" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '12px' }}>
+            <a href="https://www.youtube.com/@deandev10" target="_blank" className="focus-card" style={{ textDecoration: 'none' }}>
+              <p style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '1px', color: '#ff6b35', marginBottom: '8px', fontWeight: 600 }}>YOUTUBE</p>
+              <h3 style={{ fontSize: '16px', fontWeight: 600, color: '#e5e5e5', marginBottom: '8px' }}>@deandev10</h3>
+              <p style={{ fontSize: '13px', color: '#999', lineHeight: 1.6 }}>The first-time founder series: long-form breakdowns of real builds, what worked, what didn&apos;t, and why.</p>
+            </a>
+
+            <a href="https://www.tiktok.com/@deandev10?_r=1&_t=ZN-95cRMQBAdDW" target="_blank" className="focus-card" style={{ textDecoration: 'none' }}>
+              <p style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '1px', color: '#ff6b35', marginBottom: '8px', fontWeight: 600 }}>TIKTOK</p>
+              <h3 style={{ fontSize: '16px', fontWeight: 600, color: '#e5e5e5', marginBottom: '8px' }}>@deandev10</h3>
+              <p style={{ fontSize: '13px', color: '#999', lineHeight: 1.6 }}>Short-form lessons from taking a product 0 to 40k users, made for junior and new devs.</p>
+            </a>
+
+            <a href="https://www.instagram.com/codewithdev10?igsh=MXJpbjZyNnJpdHdsNg%3D%3D&utm_source=qr" target="_blank" className="focus-card" style={{ textDecoration: 'none' }}>
+              <p style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '1px', color: '#ff6b35', marginBottom: '8px', fontWeight: 600 }}>INSTAGRAM</p>
+              <h3 style={{ fontSize: '16px', fontWeight: 600, color: '#e5e5e5', marginBottom: '8px' }}>@codewithdev10</h3>
+              <p style={{ fontSize: '13px', color: '#999', lineHeight: 1.6 }}>Real systems built from scratch: OS, apps, and infrastructure, showing what correct architecture looks like.</p>
+            </a>
           </div>
         </section>
 
@@ -583,21 +637,11 @@ export default function Portfolio() {
           {/* Active Projects */}
           <p style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '1px', color: '#666', marginBottom: '12px', marginTop: '32px' }}>ACTIVE</p>
           <div style={{ display: 'grid', gap: '12px', marginBottom: '32px' }}>
-            <Link href="/projects/ai-smart-contract-auditor" className="project-item" style={{ textDecoration: 'none', cursor: 'pointer' }}>
+            <Link href="/projects/litmus" className="project-item" style={{ textDecoration: 'none', cursor: 'pointer' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start' }}>
                 <div style={{ flex: 1 }}>
-                  <h3 style={{ fontSize: '16px', fontWeight: 600, color: '#e5e5e5', marginBottom: '8px' }}>AI Smart Contract Audit Platform</h3>
-                  <p style={{ fontSize: '14px', color: '#999', lineHeight: 1.6 }}>Automated smart contract audits for teams pre-funding. AI-powered confidence scoring and risk assessment to safely ship to beta testing.</p>
-                </div>
-                <span className="project-badge-live" style={{ textDecoration: 'none' }}>ACTIVE</span>
-              </div>
-            </Link>
-
-            <Link href="/projects/ai-game-engine" className="project-item" style={{ textDecoration: 'none', cursor: 'pointer' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start' }}>
-                <div style={{ flex: 1 }}>
-                  <h3 style={{ fontSize: '16px', fontWeight: 600, color: '#e5e5e5', marginBottom: '8px' }}>AI Game Engine</h3>
-                  <p style={{ fontSize: '14px', color: '#999', lineHeight: 1.6 }}>Custom AI game engine powering Scrolly with 3rd party client integrations. Standalone product enabling rapid game creation, deployment, and publishing infrastructure.</p>
+                  <h3 style={{ fontSize: '16px', fontWeight: 600, color: '#e5e5e5', marginBottom: '8px' }}>Litmus</h3>
+                  <p style={{ fontSize: '14px', color: '#999', lineHeight: 1.6 }}>AI pre-audit tool covering smart contracts, databases, and payment flows. One clear verdict before you ship: Ready, Testnet only, or Not ready.</p>
                 </div>
                 <span className="project-badge-live" style={{ textDecoration: 'none' }}>ACTIVE</span>
               </div>
@@ -614,23 +658,9 @@ export default function Portfolio() {
             </Link>
           </div>
 
-          {/* In Build */}
-          <p style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '1px', color: '#666', marginBottom: '12px' }}>IN BUILD</p>
-          <div style={{ display: 'grid', gap: '12px', marginBottom: '32px' }}>
-            <Link href="/projects/avax-ecosystem" className="project-item" style={{ textDecoration: 'none', cursor: 'pointer' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start' }}>
-                <div style={{ flex: 1 }}>
-                  <h3 style={{ fontSize: '16px', fontWeight: 600, color: '#e5e5e5', marginBottom: '8px' }}>Avax Ecosystem Infrastructure</h3>
-                  <p style={{ fontSize: '14px', color: '#999', lineHeight: 1.6 }}>Full-stack ecosystem accelerator for Avalanche. Tracking builder scores, funding pipelines, chain support coordination, and bilateral accountability metrics. Ops platform connecting developers with resources.</p>
-                </div>
-                <span className="project-badge-repo" style={{ textDecoration: 'none' }}>IN BUILD</span>
-              </div>
-            </Link>
-          </div>
-
           {/* MVP */}
           <p style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '1px', color: '#666', marginBottom: '12px' }}>MVP</p>
-          <div style={{ display: 'grid', gap: '12px' }}>
+          <div style={{ display: 'grid', gap: '12px', marginBottom: '32px' }}>
             <Link href="/projects/nocturne" className="project-item" style={{ textDecoration: 'none', cursor: 'pointer' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start' }}>
                 <div style={{ flex: 1 }}>
@@ -638,6 +668,50 @@ export default function Portfolio() {
                   <p style={{ fontSize: '14px', color: '#999', lineHeight: 1.6 }}>iOS privacy wallet pushing boundaries with ZK-SNARKs, stealth addresses, TOR routing, and cross-chain bridges. React Native with hardware-backed security showcasing advanced cryptography.</p>
                 </div>
                 <span className="project-badge-repo" style={{ textDecoration: 'none' }}>MVP</span>
+              </div>
+            </Link>
+          </div>
+
+          {/* Past */}
+          <p style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '1px', color: '#666', marginBottom: '12px' }}>PAST</p>
+          <div style={{ display: 'grid', gap: '12px' }}>
+            <Link href="/projects/scrolly" className="project-item" style={{ textDecoration: 'none', cursor: 'pointer' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start' }}>
+                <div style={{ flex: 1 }}>
+                  <h3 style={{ fontSize: '16px', fontWeight: 600, color: '#e5e5e5', marginBottom: '8px' }}>Scrolly</h3>
+                  <p style={{ fontSize: '14px', color: '#999', lineHeight: 1.6 }}>Game publishing platform scaled from 0 to 40k+ users and 1.7M+ games played as a solo dev. Sunset in 2026.</p>
+                </div>
+                <span className="project-badge-repo" style={{ textDecoration: 'none' }}>SUNSET</span>
+              </div>
+            </Link>
+
+            <Link href="/projects/trader-native-os" className="project-item" style={{ textDecoration: 'none', cursor: 'pointer' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start' }}>
+                <div style={{ flex: 1 }}>
+                  <h3 style={{ fontSize: '16px', fontWeight: 600, color: '#e5e5e5', marginBottom: '8px' }}>Trader-Native Mobile OS</h3>
+                  <p style={{ fontSize: '14px', color: '#999', lineHeight: 1.6 }}>Led the development team building a custom Android OS for Web3 traders on native hardware (PumpOne). Engagement wrapped in 2026 to focus on shipping my own products.</p>
+                </div>
+                <span className="project-badge-repo" style={{ textDecoration: 'none' }}>PAST</span>
+              </div>
+            </Link>
+
+            <Link href="/projects/ai-game-engine" className="project-item" style={{ textDecoration: 'none', cursor: 'pointer' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start' }}>
+                <div style={{ flex: 1 }}>
+                  <h3 style={{ fontSize: '16px', fontWeight: 600, color: '#e5e5e5', marginBottom: '8px' }}>AI Game Engine</h3>
+                  <p style={{ fontSize: '14px', color: '#999', lineHeight: 1.6 }}>Custom AI game engine enabling rapid game creation, deployment, and publishing infrastructure with 3rd party client integrations. Sunset alongside Scrolly in 2026.</p>
+                </div>
+                <span className="project-badge-repo" style={{ textDecoration: 'none' }}>SUNSET</span>
+              </div>
+            </Link>
+
+            <Link href="/projects/avax-ecosystem" className="project-item" style={{ textDecoration: 'none', cursor: 'pointer' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start' }}>
+                <div style={{ flex: 1 }}>
+                  <h3 style={{ fontSize: '16px', fontWeight: 600, color: '#e5e5e5', marginBottom: '8px' }}>Avax Ecosystem Infrastructure</h3>
+                  <p style={{ fontSize: '14px', color: '#999', lineHeight: 1.6 }}>Full-stack ecosystem accelerator for Avalanche. Builder scores, funding pipelines, chain support coordination, and bilateral accountability metrics.</p>
+                </div>
+                <span className="project-badge-repo" style={{ textDecoration: 'none' }}>ARCHIVED</span>
               </div>
             </Link>
           </div>

@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Dean Ball - Senior Full Stack Developer",
+  title: "Dean Ball - Product Engineer",
   description: "Building with AI, creating content, and sharing the journey.",
   viewport: "width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes",
 };

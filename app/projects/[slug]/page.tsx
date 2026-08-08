@@ -41,6 +41,16 @@ export default function ProjectDetailPage() {
     active: '#ff6b35',
     'in-build': '#ff6b35',
     mvp: '#999',
+    beta: '#ff6b35',
+    sunset: '#999',
+    past: '#999',
+    archived: '#999',
+  };
+
+  const statusLabels: Record<string, string> = {
+    'in-build': 'IN BUILD',
+    sunset: 'SUNSET',
+    past: 'PAST',
   };
 
   return (
@@ -119,7 +129,7 @@ export default function ProjectDetailPage() {
             background: `${statusColors[project.status]}1a`,
             border: `1px solid ${statusColors[project.status]}33`,
           }}>
-            {project.status === 'in-build' ? 'IN BUILD' : project.status.toUpperCase()}
+            {statusLabels[project.status] || project.status.toUpperCase()}
           </span>
         </div>
 
