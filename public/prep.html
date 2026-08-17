@@ -1,0 +1,822 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Raydium Prep</title>
+</head>
+<body>
+<style>
+  :root {
+    --bg: #0e1016;
+    --card: #171a23;
+    --card-2: #1e2230;
+    --border: #2b3040;
+    --accent: #8b7dff;
+    --accent-dim: rgba(139, 125, 255, 0.16);
+    --text: #e6e6ee;
+    --muted: #9a9cb0;
+    --dim: #6b6e82;
+    --good: #4cbf7a;
+    --good-dim: rgba(76, 191, 122, 0.15);
+    --warn: #e0b13f;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
+    line-height: 1.6;
+    font-size: 16px;
+  }
+  .wrap { max-width: 1400px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 56px) 80px; }
+
+  header.site { padding: 36px 0 18px; }
+  .brand { font-size: 12px; color: var(--dim); letter-spacing: 0.06em; }
+  .brand sup { font-size: 8px; }
+  h1 { font-size: 34px; font-weight: 800; margin: 10px 0 4px; letter-spacing: -0.02em; text-wrap: balance; }
+  h1 .o { color: var(--accent); }
+  .sub { color: var(--muted); font-size: 14px; margin: 0; }
+
+  nav.tabs {
+    position: sticky; top: 0; z-index: 10;
+    background: var(--bg);
+    display: flex; gap: 8px; flex-wrap: wrap;
+    padding: 12px 0; margin-top: 18px;
+    border-bottom: 1px solid var(--border);
+  }
+  nav.tabs button {
+    background: var(--card); color: var(--muted);
+    border: 1px solid var(--border); border-radius: 999px;
+    padding: 7px 14px; font-size: 13px; font-weight: 600;
+    cursor: pointer; white-space: nowrap; font-family: inherit;
+  }
+  nav.tabs button:hover { color: var(--text); }
+  nav.tabs button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  nav.tabs button.on { background: var(--accent); border-color: var(--accent); color: #0e1016; }
+
+  section.panel { display: none; padding-top: 26px; }
+  section.panel.on { display: grid; grid-template-columns: 1fr; gap: 0 24px; align-items: start; }
+  @media (min-width: 980px) {
+    section.panel.on { grid-template-columns: 1fr 1fr; }
+    section.panel > h2, section.panel > p, section.panel > .callout, section.panel > .tblwrap,
+    section.panel > .drill-status, section.panel > .flash, section.panel > .cheat,
+    section.panel > #askthem, section.panel > #prechecks, section.panel > .picknote,
+    section.panel > .card.wide { grid-column: 1 / -1; }
+  }
+
+  h2 { font-size: 13px; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; color: var(--accent); margin: 30px 0 12px; }
+  h3 { font-size: 17px; font-weight: 700; margin: 22px 0 8px; letter-spacing: -0.01em; }
+  p, li { color: var(--muted); font-size: 15px; }
+  p strong, li strong { color: var(--text); font-weight: 650; }
+  ul { padding-left: 20px; margin: 8px 0; }
+  li { margin: 5px 0; }
+  em { color: var(--text); font-style: normal; border-bottom: 2px solid var(--accent-dim); }
+
+  .card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 10px; padding: 16px 18px; margin: 12px 0;
+  }
+  .card h3 { margin-top: 0; }
+  .card p:last-child, .card ul:last-child { margin-bottom: 2px; }
+
+  .num { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-variant-numeric: tabular-nums; color: var(--text); }
+
+  details {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 10px; margin: 10px 0; overflow: hidden;
+  }
+  details summary {
+    cursor: pointer; padding: 13px 16px; font-weight: 650; color: var(--text);
+    font-size: 15px; list-style: none; display: flex; gap: 10px; align-items: baseline;
+  }
+  details summary::before { content: "+"; color: var(--accent); font-weight: 800; flex-shrink: 0; }
+  details[open] summary::before { content: "\2212"; }
+  details summary:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+  details .inner { padding: 0 16px 14px 34px; border-top: 1px dashed var(--border); padding-top: 12px; }
+
+  table { border-collapse: collapse; width: 100%; font-size: 14px; }
+  .tblwrap { overflow-x: auto; margin: 12px 0; border: 1px solid var(--border); border-radius: 10px; }
+  th, td { text-align: left; padding: 9px 12px; border-bottom: 1px solid var(--border); color: var(--muted); vertical-align: top; }
+  th { color: var(--text); font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; background: var(--card); }
+  tr:last-child td { border-bottom: none; }
+
+  /* flashcards */
+  .drill-status { display: flex; align-items: center; gap: 12px; margin: 14px 0 18px; flex-wrap: wrap; }
+  .pips { display: flex; gap: 4px; flex-wrap: wrap; }
+  .pip { width: 16px; height: 8px; border-radius: 4px; background: var(--card-2); border: 1px solid var(--border); cursor: pointer; padding: 0; }
+  .pip.now { border-color: var(--accent); }
+  .pip.ok { background: var(--good); border-color: var(--good); }
+  .pip.hard { background: var(--warn); border-color: var(--warn); }
+  .pip:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .drill-count { font-size: 13px; color: var(--dim); }
+
+  .flash {
+    max-width: 860px;
+    background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+    padding: 22px; min-height: 180px; display: flex; flex-direction: column; gap: 14px;
+  }
+  .flash .tag { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); font-weight: 700; }
+  .flash .q { font-size: 18px; font-weight: 700; color: var(--text); line-height: 1.45; text-wrap: balance; }
+  .flash .a { font-size: 15px; color: var(--muted); display: none; border-top: 1px dashed var(--border); padding-top: 14px; }
+  .flash.open .a { display: block; }
+  .flash .a strong { color: var(--text); }
+  .btnrow { display: flex; gap: 8px; flex-wrap: wrap; margin-top: auto; }
+  .btn {
+    font-family: inherit; font-size: 14px; font-weight: 650; cursor: pointer;
+    border-radius: 8px; padding: 9px 16px; border: 1px solid var(--border);
+    background: var(--card-2); color: var(--text);
+  }
+  .btn:hover { border-color: var(--dim); }
+  .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .btn.primary { background: var(--accent); border-color: var(--accent); color: #0e1016; }
+  .btn.good { background: var(--good-dim); border-color: var(--good); color: var(--good); }
+  .btn.warn { background: rgba(224, 177, 63, 0.12); border-color: var(--warn); color: var(--warn); }
+  .btn.ghost { background: none; }
+
+  /* checklists */
+  label.check {
+    display: flex; gap: 10px; align-items: flex-start; padding: 10px 12px;
+    background: var(--card); border: 1px solid var(--border); border-radius: 8px;
+    margin: 8px 0; cursor: pointer; font-size: 15px; color: var(--muted);
+  }
+  label.check input { accent-color: var(--accent); margin-top: 4px; flex-shrink: 0; }
+  label.check.done { color: var(--dim); text-decoration: line-through; }
+  .picknote { font-size: 13px; color: var(--dim); }
+
+  .cheat { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px; }
+  @media (max-width: 620px) { .cheat { grid-template-columns: 1fr; } }
+  .cheat .card { margin: 0; }
+  .cheat h3 { font-size: 13px; text-transform: uppercase; letter-spacing: 0.07em; color: var(--accent); }
+  .cheat p { font-size: 14px; margin: 6px 0; }
+
+  .callout { border-left: 3px solid var(--accent); background: var(--accent-dim); border-radius: 0 10px 10px 0; padding: 12px 16px; margin: 14px 0; }
+  .callout p { color: var(--text); margin: 0; font-size: 15px; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    section.panel.on { animation: fade 0.18s ease; }
+    @keyframes fade { from { opacity: 0.4; } to { opacity: 1; } }
+  }
+</style>
+
+<div class="wrap">
+  <header class="site">
+    <div class="brand">STUDY MODE &#183; DEVREL INTERVIEW</div>
+    <h1>Raydium <span class="o">Prep</span></h1>
+    <p class="sub">60 minutes with Stendhal &#183; Raydium Growth team &#183; they'll probe AMMs, liquidity, swaps/routing, and debugging</p>
+  </header>
+
+  <nav class="tabs" id="tabs"></nav>
+
+  <!-- ============ TAB 1: DEFI BASICS ============ -->
+  <section class="panel" data-tab="DeFi basics">
+    <div class="callout"><p><strong>Your frame for the whole hour:</strong> "I integrated Raydium myself before this interview, found real friction, built a working quickstart, and I teach devs for fun. That's the job."</p></div>
+
+    <h2>Level 1: the foundations</h2>
+    <p>Master this tab before moving on. If you can explain the worked example out loud, you're ready for Intermediate.</p>
+
+    <details>
+      <summary>What is DeFi, and what is a DEX?</summary>
+      <div class="inner">
+        <p><strong>DeFi</strong> = financial services (trading, lending, earning yield) rebuilt as smart contracts on a blockchain. No company holds your money; code holds it, and anyone can use or build on it.</p>
+        <p><strong>CEX</strong> (Binance, Coinbase): a company has custody and runs an order book matching buyers with sellers. <strong>DEX</strong> (Raydium, Uniswap): non-custodial smart contracts, and most don't match buyers and sellers at all; they use an AMM.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>The AMM: the one concept that matters most</summary>
+      <div class="inner">
+        <p>No order book. Instead, <strong>liquidity pools</strong>: smart contracts holding two tokens. A formula prices every trade: <em>x &times; y = k</em>. Spot price = y / x.</p>
+        <p>So a pool holding <span class="num">1,000</span> SOL and <span class="num">76,000</span> USDC prices SOL at <span class="num">$76</span>. Buy SOL from the pool and SOL gets scarcer, so the price rises automatically. You trade against the pot, not a person.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>The worked example (be able to do this out loud)</summary>
+      <div class="inner">
+        <p>Pool: <span class="num">1,000</span> SOL and <span class="num">76,000</span> USDC, so k = <span class="num">76,000,000</span>. You sell <span class="num">10</span> SOL (ignore fees).</p>
+        <ul>
+          <li>New SOL: <span class="num">1,010</span>. USDC must become <span class="num">76,000,000 / 1,010 = 75,247.5</span>.</li>
+          <li>You receive <span class="num">76,000 &minus; 75,247.5 = 752.5</span> USDC, i.e. <span class="num">$75.25</span>/SOL instead of $76.</li>
+          <li>That gap is <strong>price impact</strong>: your own trade moved the price.</li>
+        </ul>
+        <p><strong>Rule of thumb from Raydium's docs:</strong> impact &asymp; 2 &times; (trade size / pool size). Trade 1% of the pool, move price ~2%.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>Liquidity providers: who fills the pot, and why</summary>
+      <div class="inner">
+        <p><strong>LPs</strong> deposit both tokens into a pool and earn a cut of every trade's fee (on Raydium's standard pools, most of a <span class="num">0.25%</span> fee per trade). Deep pools = better prices for traders = more volume = more fees. That flywheel is the whole business.</p>
+        <p>The catch is a risk called <strong>impermanent loss</strong>. That's the first thing in the Intermediate tab.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>Slippage tolerance: the safety net on every swap</summary>
+      <div class="inner">
+        <p>Prices move between the moment you're quoted and the moment your trade lands. <strong>Slippage tolerance</strong> (e.g. 0.5%) sets the worst fill you'll accept: the transaction carries a minimum-out amount and <em>fails on purpose</em> rather than filling worse. In my quickstart, that's the <span class="num">otherAmountThreshold</span> field.</p>
+      </div>
+    </details>
+  </section>
+
+  <!-- ============ TAB 1B: DEFI INTERMEDIATE ============ -->
+  <section class="panel" data-tab="DeFi intermediate">
+    <h2>Level 2: the trade-offs</h2>
+    <p>This is where LP economics and routing live: the topics an interviewer uses to separate "read a blog once" from "gets it".</p>
+
+    <details>
+      <summary>Impermanent loss, with numbers</summary>
+      <div class="inner">
+        <p>The AMM formula constantly rebalances the pool, which means LPs automatically sell whichever token is rising and accumulate the one that's falling. If prices diverge, an LP ends up worth less than someone who just held both tokens.</p>
+        <p><strong>The numbers to quote:</strong> if one token's price doubles, the LP is worth about <span class="num">5.7%</span> less than holding. 4x price move: about <span class="num">20%</span> less. Price returns to entry: loss disappears, hence "impermanent".</p>
+        <p><strong>The judgment line:</strong> LPing is profitable when <em>fee income beats divergence</em>. Stable pairs: tiny IL, tiny fees. Volatile pairs: big fees needed to compensate.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>Slippage vs price impact (interviewers love this distinction)</summary>
+      <div class="inner">
+        <ul>
+          <li><strong>Price impact</strong>: what your own trade does to the pool. Deterministic, comes from the formula, exists even if you're the only trader on earth.</li>
+          <li><strong>Slippage</strong>: the world changing between your quote and your execution because other trades landed first.</li>
+          <li>Tight tolerance also happens to be the cheapest defense against sandwich attacks (Pro tab).</li>
+        </ul>
+      </div>
+    </details>
+
+    <details>
+      <summary>Concentrated liquidity (CLMM): the concept</summary>
+      <div class="inner">
+        <p>Standard AMM liquidity is spread across every price from 0 to infinity, so most of it sits where trading never happens. A <strong>CLMM</strong> lets each LP concentrate into a chosen <strong>price range</strong>, e.g. $70&ndash;$85 for SOL/USDC.</p>
+        <ul>
+          <li><strong>Win:</strong> far deeper liquidity per dollar inside the range. I watched a <span class="num">$6M</span> CLMM pool out-trade a <span class="num">$10M</span> standard pool on Raydium, live.</li>
+          <li><strong>Catch:</strong> price exits your range and you earn nothing while holding 100% of the losing side. Concentration concentrates IL too. It's active management, not passive.</li>
+        </ul>
+        <p>The internals (ticks, sqrt prices, fee growth) are in the Pro tab.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>Routing: multi-hop and aggregators</summary>
+      <div class="inner">
+        <ul>
+          <li><strong>Multi-hop:</strong> no good direct pool? Route A &rarr; B &rarr; C through a hub token (USDC, SOL, USDT). Each hop adds its own fee and impact.</li>
+          <li><strong>Your live example:</strong> quoting 0.1 SOL &rarr; USDC, Raydium's Trade API routed <em>SOL &rarr; USDT &rarr; USDC</em> in two hops because it beat the direct pool.</li>
+          <li><strong>Aggregators:</strong> Jupiter shops every Solana DEX for the best route; ~<span class="num">60%</span> of its routed volume flows through Raydium. That's why integrators matter so much to them.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details>
+      <summary>Fee tiers: why different pools charge differently</summary>
+      <div class="inner">
+        <p>Fees compensate LPs for risk. Stable pairs (USDC/USDT) barely move, so competition drives fees to <span class="num">0.01%</span>. Volatile meme pairs need <span class="num">1%+</span> to pay for the IL risk. Mid-volatility majors sit around <span class="num">0.25%</span>. On CLMMs the fee tier also pairs with tick spacing: tighter spacing for stables, wider for volatile pairs.</p>
+      </div>
+    </details>
+  </section>
+
+  <!-- ============ TAB 1C: DEFI PRO ============ -->
+  <section class="panel" data-tab="DeFi pro">
+    <h2>Level 3: under the hood</h2>
+    <p>Everything here is from Raydium's own protocol docs. One or two of these dropped naturally in the interview signals real depth. Don't force them all in.</p>
+
+    <details>
+      <summary>CLMM internals: ticks and sqrt prices</summary>
+      <div class="inner">
+        <ul>
+          <li>Prices sit on a grid of <strong>ticks</strong>: price(i) = <span class="num">1.0001<sup>i</sup></span>, with indices from about <span class="num">&minus;443,636</span> to <span class="num">+443,636</span>. Positions are ranges between ticks, aligned to the pool's <strong>tick spacing</strong> (1 for the 0.01% tier, 60 for 0.25%, 120 for 1%).</li>
+          <li>Raydium stores the <strong>square root of price</strong> in Q64.64 fixed point, not the price itself. Why: token amounts become linear functions of sqrt-price (cheap math per swap), products like sqrt_price &times; liquidity don't overflow, and tick steps become an exact power ladder.</li>
+          <li>Within one tick the pool behaves like a tiny constant-product AMM. When a swap <strong>crosses an initialized tick</strong>, the pool adds or subtracts that tick's net liquidity and keeps going. That's why CLMM swap compute cost varies so much (<span class="num">170&ndash;375k</span> CU).</li>
+        </ul>
+      </div>
+    </details>
+
+    <details>
+      <summary>CLMM internals: how LPs get paid</summary>
+      <div class="inner">
+        <p>The pool keeps a global <strong>fee growth counter</strong> per token (fees per unit of liquidity, accumulated forever). Each tick tracks fee growth "outside" itself, flipping when crossed. A position computes fees earned <em>inside its range</em> as global minus outside-below minus outside-above, times its liquidity. Elegant: no per-position bookkeeping on every swap.</p>
+        <p>Raydium extras beyond the Uniswap v3 design: Token-2022 support, tick bitmaps packed for fast lookup, and up to three independent reward streams per pool with the same growth-counter pattern.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>Constant product internals: fees, reserves, rounding</summary>
+      <div class="inner">
+        <ul>
+          <li>Fee comes off your input first, then the remainder trades against the curve: output = y &times; &Delta;x_after_fee / (x + &Delta;x_after_fee).</li>
+          <li><strong>LP fees stay in the reserves</strong> (that's how LP value grows); protocol/fund shares accrue separately and are <em>excluded from pricing</em>. Integration gotcha from their docs: when quoting AMM v4 from vault balances, subtract the accrued protocol fees (<span class="num">need_take_pnl</span>) or your price is slightly wrong.</li>
+          <li><strong>Rounding rules:</strong> fees round up, outputs round down, exact-output inputs round up. The pool never undercharges. Off-by-one bug reports from integrators are usually this.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details>
+      <summary>Routing internals: how the router actually decides</summary>
+      <div class="inner">
+        <ul>
+          <li><strong>Split routing</strong> divides a big trade across pools so the <em>marginal price equalizes</em> across them. Their docs: under 0.1% of pool TVL, single pool is fine; at 1&ndash;5% of TVL, splitting wins <span class="num">10&ndash;50</span> basis points. A greedy algorithm over 100&ndash;500 slices gets near-optimal.</li>
+          <li><strong>Multi-hop impacts compound multiplicatively</strong>, not additively, and each hop pays its own fee. Deep hops through hubs still often beat shallow direct pools.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details>
+      <summary>MEV mechanics: sandwiches and defenses, properly</summary>
+      <div class="inner">
+        <ul>
+          <li>Solana has <strong>no public ordered mempool</strong>. Front-running happens via <em>leader-side reordering</em> and co-located searchers watching transaction packets arrive.</li>
+          <li><strong>Sandwich:</strong> bot buys before you, you fill worse, bot exits. Only profitable when your trade moves price meaningfully and your slippage tolerance leaves room; bots hunt for 1&ndash;2%+ tolerance.</li>
+          <li><strong>Defenses, in order:</strong> tight slippage (&le;<span class="num">0.3%</span> reverts most sandwiches), <strong>Jito bundles</strong> (private submission, never hits gossip, validator tip ~<span class="num">0.0001&ndash;0.001</span> SOL), fresh pool state right before submit, split anything over ~1% of a single pool's TVL.</li>
+          <li>Neat detail: deep CLMM liquidity naturally resists sandwiches, because trades that stay within a tick barely move price.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details>
+      <summary>Token-2022 transfer fees (a current integrator pain)</summary>
+      <div class="inner">
+        <p>Token-2022 mints can take a fee on every transfer, so the amount a pool <em>receives</em> is less than the amount you <em>sent</em>. Swap math has to price on post-transfer-fee amounts or quotes drift from reality. It also costs <span class="num">25&ndash;30%</span> more compute than classic SPL. CPMM is Raydium's Token-2022-native pool, which is part of why it's the recommended standard pool now.</p>
+      </div>
+    </details>
+  </section>
+
+  <!-- ============ TAB 2: RAYDIUM ============ -->
+  <section class="panel" data-tab="Raydium">
+    <h2>Elevator facts (verified from their docs)</h2>
+    <div class="card wide">
+      <ul>
+        <li>Launched <strong>February 2021</strong> as Solana's first hybrid AMM (constant-product pools integrated with Serum's order book). Now <strong>Solana's largest DEX by TVL: ~$1.8B</strong> (Apr 2026).</li>
+        <li>Handles <strong>35&ndash;45% of all Solana DEX volume daily</strong>, peaking around <span class="num">55%</span> during memecoin waves. Reliably a top-two venue.</li>
+        <li>~<span class="num">60%</span> of Jupiter's routed volume flows through Raydium pools. Powers the in-app swap in most Solana wallets.</li>
+        <li>The role sits in the <strong>Growth team</strong>: integrations are literally how this protocol wins.</li>
+      </ul>
+    </div>
+
+    <h2>The timeline (know this cold; it's their story)</h2>
+    <div class="tblwrap"><table>
+      <tr><th>When</th><th>What happened</th></tr>
+      <tr><td class="num">Feb 2021</td><td>Mainnet launch: first hybrid AMM on Solana (pools + Serum order book integration).</td></tr>
+      <tr><td class="num">2021</td><td>Farm v3 (RAY rewards to LPs), AcceleRaytor launchpad (later retired), first MadShield audits.</td></tr>
+      <tr><td class="num">Aug 2022</td><td>CLMM mainnet: first concentrated-liquidity DEX on Solana. Audited (OtterSec + MadShield); one critical bug fixed pre-deployment.</td></tr>
+      <tr><td class="num">Dec 2022</td><td><strong>Pool authority compromise</strong>: admin key compromised, several pools drained. Response: Squads multisig for authorities, community compensation.</td></tr>
+      <tr><td class="num">2023</td><td>Hardening: Farm v6 on Anchor (5 reward streams), CLMM gets Token-2022 support.</td></tr>
+      <tr><td class="num">Jun 2024</td><td>CPMM mainnet: long-term AMM v4 replacement, Token-2022 native, three fee tiers.</td></tr>
+      <tr><td class="num">Aug 2024</td><td>LaunchLab replaces AcceleRaytor with a bonding-curve launch model.</td></tr>
+      <tr><td class="num">Jan 2025</td><td>CPMM TVL overtakes AMM v4; migration accelerates.</td></tr>
+      <tr><td class="num">Jul 2025</td><td>CLMM TVL crosses <span class="num">$1B</span>.</td></tr>
+      <tr><td class="num">Nov 2025</td><td>CPMM v0.2 fixes an accounting edge case.</td></tr>
+    </table></div>
+
+    <h2>The six products</h2>
+    <div class="tblwrap"><table>
+      <tr><th>Product</th><th>What it is</th></tr>
+      <tr><td><strong>AMM v4</strong></td><td>The original 2021 standard pool, ~$300M TVL, legacy. Being replaced by CPMM.</td></tr>
+      <tr><td><strong>CPMM</strong></td><td>The recommended modern standard pool. Token-2022 native. Overtook AMM v4 in Jan 2025.</td></tr>
+      <tr><td><strong>CLMM</strong></td><td>Concentrated liquidity, live since Aug 2022, $1B+ TVL since Jul 2025.</td></tr>
+      <tr><td><strong>Farms</strong></td><td>Staking rewards, up to 5 concurrent reward streams (v6, Anchor).</td></tr>
+      <tr><td><strong>LaunchLab</strong></td><td>Bonding-curve token launches; where memecoin activity concentrates before graduating to pools.</td></tr>
+      <tr><td><strong>Perps</strong></td><td>Perpetual futures UI via Orderly Network.</td></tr>
+    </table></div>
+
+    <h2>Fees (exact numbers)</h2>
+    <div class="tblwrap"><table>
+      <tr><th>Pool</th><th>Total fee</th><th>Split</th></tr>
+      <tr><td>AMM v4</td><td class="num">0.25%</td><td class="num">0.22% LP &#183; 0.03% protocol (12% of fee)</td></tr>
+      <tr><td>CPMM (tier 0)</td><td class="num">0.25%</td><td class="num">0.21% LP &#183; 0.03% protocol &#183; 0.01% fund</td></tr>
+      <tr><td>CLMM</td><td class="num">0.01% &ndash; 1%+</td><td>Configured per fee tier</td></tr>
+    </table></div>
+    <p>The protocol's cut historically funds <strong>RAY buybacks</strong>.</p>
+
+    <h2>Ecosystem: who they work with, who they fight</h2>
+    <div class="card wide"><ul>
+      <li><strong>Partners/integrators:</strong> Jupiter (~60% of its routed volume through Raydium), wallets (swap, LP tracking), and lending protocols <strong>Kamino, Marginfi, Drift</strong>, which use Raydium CLMM price observations (TWAPs) for pricing and liquidations. Serving these teams is the actual job.</li>
+      <li><strong>Competitors:</strong> <strong>Orca</strong> (the other big Solana AMM), <strong>Phoenix</strong> (on-chain order book; takes institutional flow in orderbook-heavy periods), <strong>Meteora</strong>, and CEXs. Share swings with the meta: memecoin waves favor Raydium (LaunchLab + graduated pools), institutional phases favor order books.</li>
+      <li><strong>Early Token-2022 support</strong> is a differentiator: transfer-fee and transfer-hook mints work; non-transferable tokens are blocked.</li>
+    </ul></div>
+
+    <h2>Security posture (depth signal if it comes up)</h2>
+    <div class="card wide"><ul>
+      <li>Regular audits by <strong>OtterSec and MadShield</strong> across CLMM, CPMM, Farms, LaunchLab.</li>
+      <li>The <strong>Dec 2022 pool authority compromise</strong> is the scar tissue: pools drained via a compromised admin key; the response (Squads multisig + compensation) is the part worth mentioning. Knowing both halves signals real homework.</li>
+    </ul></div>
+
+    <h2>People (and the honest caveat)</h2>
+    <div class="card wide"><ul>
+      <li><strong>The team is pseudonymous</strong>; their docs name nobody, which is normal in DeFi. The founding pseudonyms from Raydium's original 2021 materials are <strong>AlphaRay</strong> (strategy/leadership), <strong>XRay</strong> (technology), and <strong>GammaRay</strong> (marketing). Treat as background; verify against their current X presence rather than reciting in the interview.</li>
+      <li><strong>Stendhal (@StRAYndhal)</strong> is who you're meeting. Homework: read their last month of posts, note what they care about, and mirror one genuine detail in conversation.</li>
+      <li><strong>The recruiter's framing is your map:</strong> hands-on Solana/DeFi depth plus developer-facing communication. Every answer should touch that bar.</li>
+    </ul></div>
+
+    <h2>The developer surface (this is the job)</h2>
+    <div class="card wide">
+      <ul>
+        <li><strong>v3 API</strong> (api-v3.raydium.io): pools, tokens, prices. Public, no key.</li>
+        <li><strong>Trade API</strong> (transaction-v1.raydium.io): quotes + ready-to-sign transaction building. The fast path; the one you used.</li>
+        <li><strong>SDK V2</strong>: TypeScript, for pool creation, LP positions, farming.</li>
+        <li><strong>CPI</strong>: on-chain programs calling Raydium programs directly.</li>
+        <li>Integrators: DEX frontends, wallets, aggregators, bots, lending protocols consuming TWAPs.</li>
+      </ul>
+    </div>
+
+    <h2>Your hands-on story (your best five minutes)</h2>
+    <div class="callout"><p>"Before applying I integrated Raydium myself. Three TypeScript scripts: pool discovery on the v3 API, a quote through the Trade API, and building a real V0 swap transaction which I deserialized and inspected instead of sending, so the whole flow runs with zero funds at risk. I hit real friction, wrote it up with fixes, and watched your router take my SOL&rarr;USDC swap through USDT in two hops because it beat the direct pool."</p></div>
+  </section>
+
+  <!-- ============ TAB 3: SOLANA + DEBUGGING ============ -->
+  <section class="panel" data-tab="Solana &amp; debugging">
+    <h2>The mental model</h2>
+
+    <details>
+      <summary>Accounts, programs, instructions, transactions</summary>
+      <div class="inner">
+        <ul>
+          <li><strong>Everything is an account.</strong> Data lives in accounts. Programs are accounts holding code. Your wallet is an account holding SOL.</li>
+          <li><strong>Programs are stateless.</strong> They only read and write the accounts a transaction hands them. That's why Solana txs list every account they touch, marked <em>writable</em> or read-only, <em>signer</em> or not. It's also what lets Solana run transactions in parallel: two txs touching different accounts don't block each other.</li>
+          <li>A <strong>transaction</strong> = one or more <strong>instructions</strong> (each: program + accounts + data) + the account list + signatures. All instructions succeed or the whole tx fails atomically.</li>
+          <li><strong>Rent:</strong> accounts must hold a minimum SOL balance ("rent-exempt") proportional to their data size. Creating an account costs a small deposit, reclaimable when closed.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details>
+      <summary>Tokens: SPL, ATAs, wrapped SOL, decimals</summary>
+      <div class="inner">
+        <ul>
+          <li>Tokens follow the <strong>SPL Token</strong> standard (or the newer <strong>Token-2022</strong> with extensions like transfer fees).</li>
+          <li>Your "USDC balance" isn't in your wallet account; it's in a separate <strong>token account</strong>. The canonical one per wallet-per-mint is the <strong>ATA</strong> (associated token account), derived deterministically. Receiving a token you've never held requires creating the ATA first (~<span class="num">20k</span> CU + rent deposit).</li>
+          <li><strong>Wrapped SOL:</strong> native SOL isn't an SPL token, so pools trade WSOL. Integrations wrap before and unwrap after (the Trade API's <span class="num">wrapSol</span>/<span class="num">unwrapSol</span> flags).</li>
+          <li><strong>Decimals matter:</strong> amounts are raw integers. SOL has 9 decimals (1 SOL = <span class="num">1e9</span> lamports), USDC has 6. In my quickstart, 0.1 SOL went in as <span class="num">100000000</span> and 7.62 USDC came back as <span class="num">7617860</span>. Getting decimals wrong is a classic integrator bug: quotes off by a factor of 1,000.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details>
+      <summary>Transaction lifecycle: build, sign, send, confirm</summary>
+      <div class="inner">
+        <ul>
+          <li><strong>Build:</strong> assemble instructions, set a compute budget and priority fee, reference a <strong>recent blockhash</strong> (the tx's freshness stamp, valid ~<span class="num">150</span> blocks, roughly 60&ndash;90 seconds).</li>
+          <li><strong>Sign:</strong> every required signer signs the message. Slow human signing (hardware wallets, multisig) is a common reason the blockhash expires before sending.</li>
+          <li><strong>Send:</strong> submit to an RPC node, which forwards toward the current leader. There's no public mempool; unconfirmed txs aren't globally visible.</li>
+          <li><strong>Confirm:</strong> poll signature status at a <strong>commitment level</strong>: <em>processed</em> (one node saw it), <em>confirmed</em> (cluster majority voted, the usual choice), <em>finalized</em> (rooted, ~30+ blocks, irreversible). Mixing commitment levels between writes and reads causes "I sent it but can't see it" confusion.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details>
+      <summary>Versioned transactions and address lookup tables</summary>
+      <div class="inner">
+        <ul>
+          <li>A Solana tx maxes out at <span class="num">1,232</span> bytes. Every account address costs 32 bytes, and AMM swaps touch a lot of accounts (pool state, vaults, ATAs, programs, oracles).</li>
+          <li><strong>V0 (versioned) transactions</strong> solve this with <strong>address lookup tables (ALTs)</strong>: on-chain address lists a tx can reference by index instead of carrying full addresses.</li>
+          <li>That's exactly what I saw building a Raydium swap: a V0 transaction with <span class="num">5</span> instructions, <span class="num">24</span> static accounts, and <span class="num">1</span> lookup table. Legacy tools that only understand legacy txs choke on these; integrators still hit this.</li>
+        </ul>
+      </div>
+    </details>
+
+    <h2>Making transactions land</h2>
+
+    <details>
+      <summary>Compute budget: the CU system</summary>
+      <div class="inner">
+        <ul>
+          <li>Every instruction consumes <strong>compute units</strong>. Default budget is <span class="num">200k</span> CU per instruction unless you set your own limit; the per-transaction max is <span class="num">1.4M</span>.</li>
+          <li>You set it explicitly with a <span class="num">SetComputeUnitLimit</span> instruction. Blow the limit and you get <span class="num">ProgramFailedToComplete</span>.</li>
+          <li><strong>Raydium's own benchmarks:</strong> CPMM swap ~<span class="num">140&ndash;150k</span> CU; CLMM swap <span class="num">170&ndash;375k</span> depending on tick crossings; Token-2022 costs <span class="num">25&ndash;30%</span> more; add ~<span class="num">20k</span> per ATA creation. Budget ~<span class="num">25%</span> headroom above expected.</li>
+          <li>Why CLMM varies: each initialized tick the swap crosses is extra account loading and math. A volatile pool at a busy price level costs more CU than a quiet one.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details>
+      <summary>Priority fees: how inclusion actually works</summary>
+      <div class="inner">
+        <ul>
+          <li>Priority fee = micro-lamports <em>per CU</em>, set via <span class="num">SetComputeUnitPrice</span>. It's a bid for the leader's attention on top of the base 5,000 lamports/signature.</li>
+          <li><strong>Fee markets are per writable account</strong>, not global. Writing to a hot Raydium pool competes with everyone else writing that pool; a quiet account is nearly free. Estimate against the accounts you touch (<span class="num">getRecentPrioritizationFees</span> or an RPC provider's estimator), not a global average.</li>
+          <li><strong>Retry pattern from Raydium's docs:</strong> escalate the fee ~<span class="num">1.5&times;</span> per attempt, refresh the blockhash, and broadcast to multiple RPCs. Cost reality: a bot doing 1,000 tx/day pays roughly $1&ndash;30/month in priority fees, 5&ndash;10&times; that during congestion.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details>
+      <summary>RPC: your only window into the chain</summary>
+      <div class="inner">
+        <ul>
+          <li>An <strong>RPC node</strong> is how apps read state and submit txs. Methods you'll actually use: <span class="num">getLatestBlockhash</span>, <span class="num">sendTransaction</span>, <span class="num">simulateTransaction</span>, <span class="num">getSignatureStatuses</span>, <span class="num">getAccountInfo</span>, <span class="num">getRecentPrioritizationFees</span>.</li>
+          <li><strong>Public RPCs are rate-limited and lag</strong>; production integrators use paid providers (Helius, Triton, QuickNode). "Works on my machine, fails in prod" is often just two different RPCs at different freshness.</li>
+          <li>A node that's <em>behind</em> causes: "blockhash not found" on fresh blockhashes, stale pool state (quotes off), and txs that seem to vanish. Compare against a second RPC before blaming the protocol.</li>
+          <li><span class="num">simulateTransaction</span> is the debugger's best friend: runs the tx against current state and returns the full program logs, without spending anything.</li>
+        </ul>
+      </div>
+    </details>
+
+    <h2>Debugging like the job demands</h2>
+
+    <details>
+      <summary>Reading a failed transaction (anatomy of the logs)</summary>
+      <div class="inner">
+        <ul>
+          <li>Look the signature up on an explorer (Solscan, Solana Explorer, SolanaFM) or pull it via RPC. The <strong>program logs</strong> show each program invocation nested, and name exactly which instruction index failed.</li>
+          <li>Failures read like: <span class="num">InstructionError: [2, Custom(6021)]</span> = instruction #2 failed with the program's own error code 6021. <strong>Custom codes map to the program's error enum</strong>: look them up in the program's IDL or source. Slippage-exceeded errors from AMMs show up this way constantly.</li>
+          <li>Chain-level errors (blockhash expired, insufficient fee-payer SOL, missing signature) never reach a program; they're rejected earlier, which itself tells you where to look.</li>
+          <li>If it <em>never landed at all</em>, there are no logs: that's a delivery problem (priority fee, expired blockhash, RPC), not a program problem. This one distinction sorts half of all support tickets.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details>
+      <summary>The failure table (memorize)</summary>
+      <div class="inner">
+        <div class="tblwrap"><table>
+          <tr><th>Symptom</th><th>Cause</th><th>Fix</th></tr>
+          <tr><td>Custom program error on the swap ix</td><td>Usually slippage: pool moved past minimum-out</td><td>Fresh quote, sane tolerance, retry</td></tr>
+          <tr><td>Blockhash not found / expired</td><td>&gt;~60&ndash;90s between build and land, or lagging RPC</td><td>Re-fetch blockhash; check RPC freshness</td></tr>
+          <tr><td><span class="num">ProgramFailedToComplete</span></td><td>CU limit too low (CLMM tick crossings!)</td><td>Raise limit with headroom</td></tr>
+          <tr><td>Sits unconfirmed, then vanishes</td><td>Priority fee too low on contested accounts</td><td>Estimate on the pool account; escalate 1.5&times;</td></tr>
+          <tr><td>AccountNotFound / invalid account</td><td>Missing output ATA, or wrong derived address</td><td>Create ATA first; verify derivations</td></tr>
+          <tr><td>Insufficient funds</td><td>Fee-payer short on SOL for fees + rent deposits</td><td>Top up; remember ATA rent</td></tr>
+          <tr><td>Quote wildly off from execution</td><td>Stale pool state, wrong decimals, or Token-2022 transfer fee unaccounted</td><td>Fresh state, check decimals, check mint extensions</td></tr>
+          <tr><td>Opaque 4xx from the API</td><td>Wrong request shape (e.g. inner <span class="num">data</span> instead of full <span class="num">swapResponse</span>)</td><td>Read the request, not just the chain</td></tr>
+          <tr><td>Works on one RPC, fails on another</td><td>Node behind, different commitment, rate limits</td><td>Compare two RPCs; align commitment levels</td></tr>
+        </table></div>
+      </div>
+    </details>
+
+    <details>
+      <summary>The 5-step method (recite this in the interview)</summary>
+      <div class="inner">
+        <ul>
+          <li><strong>1. Get the artifact.</strong> Landed: the tx signature, read the logs. Never landed: the serialized tx + the RPC error. No artifact, no debugging; "it doesn't work" is not an artifact.</li>
+          <li><strong>2. Reproduce minimally.</strong> Strip to the smallest failing call, ideally a standalone script. (My quickstart scripts are exactly this shape, which is why reference repos matter.)</li>
+          <li><strong>3. Read logs, not vibes.</strong> <span class="num">simulateTransaction</span> gives full logs for free. The failing instruction index plus the custom error code usually is the answer.</li>
+          <li><strong>4. Classify.</strong> Delivery problem (fees, blockhash, RPC) vs program problem (slippage, CU, accounts) vs integration problem (request shape, decimals, missing ATA). Each class has a different owner and fix.</li>
+          <li><strong>5. Fix and document.</strong> If one integrator hit it, ten more will. The ticket isn't closed until the answer is in the docs or an example. That last step is the DevRel job.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details>
+      <summary>Support scenarios to rehearse (they may roleplay these)</summary>
+      <div class="inner">
+        <ul>
+          <li><strong>"Swaps work for SOL/USDC but fail for this new token."</strong> Think: missing ATA for the output mint, Token-2022 transfer fees breaking the math, or a thin pool where any real size blows the slippage tolerance.</li>
+          <li><strong>"It works in dev, fails in production."</strong> Think: different RPC (freshness, rate limits), different commitment level, prod wallet short on SOL, prod traffic hitting contested accounts without priority fees.</li>
+          <li><strong>"Transactions fail only during volume spikes."</strong> Think: static priority fees that don't escalate, CU limits sized on quiet CLMM pools that cross more ticks when volatile, blockhashes expiring in retry queues.</li>
+          <li><strong>"Your API is broken, the tx builder rejects my request."</strong> Think: request shape (the <span class="num">swapResponse</span> envelope trap I personally hit), stale quote being replayed, wrong <span class="num">txVersion</span>.</li>
+          <li>In every case the script is the same: artifact, minimal repro, logs, classify, fix, document.</li>
+        </ul>
+      </div>
+    </details>
+
+    <h2>MEV and sandwiches</h2>
+    <div class="card"><ul>
+      <li>Solana has <strong>no public ordered mempool</strong>; front-running happens via leader-side ordering and co-located searchers.</li>
+      <li><strong>Sandwich:</strong> bot buys before you, you fill worse, bot sells after. Only profitable if your trade moves price and your slippage is loose.</li>
+      <li><strong>Defenses:</strong> tight slippage (&le;<span class="num">0.3%</span>), <strong>Jito bundles</strong> (private submission, tip ~<span class="num">0.0001&ndash;0.001</span> SOL), fresh pool state before submit, split big trades. Full mechanics in the DeFi pro tab.</li>
+    </ul></div>
+  </section>
+
+  <!-- ============ TAB 4: JD MAP ============ -->
+  <section class="panel" data-tab="JD map">
+    <h2>What each JD line really means, and your evidence</h2>
+    <div class="tblwrap"><table>
+      <tr><th>They ask for</th><th>Meaning</th><th>Your evidence</th></tr>
+      <tr><td>Support integrators end-to-end</td><td>Be the human API between partners and protocol</td><td>Bots inside live client businesses; contract builds owned end to end</td></tr>
+      <tr><td>Debug tx / RPC / SDK issues</td><td>The Solana &amp; debugging tab</td><td>Shipped Solana products; SLOPS wallet integration; trading bots</td></tr>
+      <tr><td>Improve docs, SDKs, examples</td><td>Find friction, fix it in writing and code</td><td>Friction report + quickstart, done before day one</td></tr>
+      <tr><td>Reference implementations</td><td>Small, runnable, honest code</td><td>The quickstart is literally this</td></tr>
+      <tr><td>Content devs actually use</td><td>Practical over promotional</td><td>Your teaching content: what worked, what didn't</td></tr>
+      <tr><td>Workshops, Discord, events</td><td>Talk to devs live</td><td>Superteam UK x Solana stage; hackathon winner</td></tr>
+      <tr><td>LLM developer workflows</td><td>AI-forward DevRel</td><td>Litmus live in production; AI-native build workflow</td></tr>
+      <tr><td>Rust: read on-chain programs</td><td>Reason about programs, not write kernels</td><td>Honest frame: comfortable reading and reasoning; TS is the daily driver</td></tr>
+    </table></div>
+
+    <div class="callout"><p><strong>Their success metrics, from the JD (quote these back):</strong> devs integrate quickly with minimal support &#183; docs widely used &#183; more high-quality integrations &#183; strong relationships with key Solana builders.</p></div>
+  </section>
+
+  <!-- ============ TAB 5: Q&A DRILL ============ -->
+  <section class="panel" data-tab="Q&amp;A drill">
+    <p>Click a card to reveal the model answer, then rate yourself honestly. Ratings save on this device. <strong>Answer out loud before revealing.</strong> Green = nailed it, amber = drill again.</p>
+    <div class="drill-status">
+      <div class="pips" id="pips"></div>
+      <span class="drill-count" id="drillcount"></span>
+      <button class="btn ghost" id="resetdrill" style="font-size:12px;padding:5px 10px;">Reset</button>
+    </div>
+    <div class="flash" id="flash">
+      <div class="tag" id="ftag"></div>
+      <div class="q" id="fq"></div>
+      <div class="a" id="fa"></div>
+      <div class="btnrow">
+        <button class="btn primary" id="reveal">Show answer</button>
+        <button class="btn good" id="gotit" hidden>Nailed it</button>
+        <button class="btn warn" id="again" hidden>Drill again</button>
+        <button class="btn ghost" id="skip">Next &rarr;</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TAB 6: ASK THEM ============ -->
+  <section class="panel" data-tab="Ask them">
+    <h2>Pick 6&ndash;8 to bring (tick your picks, they save)</h2>
+    <p class="picknote" id="picknote"></p>
+    <div id="askthem"></div>
+  </section>
+
+  <!-- ============ TAB 7: CHEAT SHEET ============ -->
+  <section class="panel" data-tab="Cheat sheet">
+    <h2>Last 10 minutes before the call</h2>
+    <div class="cheat">
+      <div class="card"><h3>Raydium</h3>
+        <p>Largest Solana DEX &#183; <span class="num">~$1.8B</span> TVL &#183; launched <span class="num">2021</span></p>
+        <p><span class="num">35&ndash;45%</span> of Solana DEX volume &#183; <span class="num">~60%</span> of Jupiter's routed volume</p>
+        <p>AMM v4 &#183; CPMM &#183; CLMM &#183; Farms &#183; LaunchLab &#183; Perps</p>
+      </div>
+      <div class="card"><h3>Fees</h3>
+        <p>AMM v4: <span class="num">0.25%</span> = 0.22 LP / 0.03 protocol</p>
+        <p>CPMM t0: <span class="num">0.21 / 0.03 / 0.01</span></p>
+        <p>CLMM tiers: <span class="num">0.01% &rarr; 1%+</span>, spacing 1 / 60 / 120</p>
+      </div>
+      <div class="card"><h3>Math</h3>
+        <p><span class="num">x &times; y = k</span> &#183; price = y/x</p>
+        <p>Impact &asymp; <span class="num">2 &times;</span> trade/pool</p>
+        <p>IL: pool auto-sells winners; fees must beat divergence</p>
+      </div>
+      <div class="card"><h3>Solana ops</h3>
+        <p>CU: CPMM <span class="num">140&ndash;150k</span> &#183; CLMM <span class="num">170&ndash;375k</span> &#183; T22 +25&ndash;30%</p>
+        <p>Blockhash <span class="num">~60s</span> &#183; fees per writable account &#183; escalate <span class="num">1.5&times;</span></p>
+        <p>Sandwich defense: slippage &le;<span class="num">0.3%</span> + Jito</p>
+      </div>
+      <div class="card"><h3>Your run</h3>
+        <p><span class="num">0.1</span> SOL &rarr; <span class="num">7.62</span> USDC via SOL&rarr;USDT&rarr;USDC, 2 hops</p>
+        <p>Built V0 tx: <span class="num">5</span> instructions &#183; <span class="num">24</span> accounts &#183; <span class="num">1</span> lookup table</p>
+      </div>
+      <div class="card"><h3>Your numbers</h3>
+        <p><span class="num">40k+</span> users &#183; <span class="num">1.7M+</span> games &#183; <span class="num">8</span>-week V1 &#183; <span class="num">$1,000</span> budget</p>
+        <p>MYRO <span class="num">85%</span> &#183; Litmus live</p>
+      </div>
+    </div>
+
+    <h2>Before the call</h2>
+    <div id="prechecks"></div>
+
+    <div class="callout"><p><strong>The "other interviews" question:</strong> answer honestly and briefly. "I'm focused on this one, it's the role I want" is a strong answer. Don't invent competing offers.</p></div>
+  </section>
+</div>
+
+<script>
+(function () {
+  // ---------- tabs ----------
+  var panels = Array.prototype.slice.call(document.querySelectorAll("section.panel"));
+  var tabbar = document.getElementById("tabs");
+  panels.forEach(function (p, i) {
+    var btn = document.createElement("button");
+    btn.innerHTML = p.getAttribute("data-tab");
+    btn.addEventListener("click", function () { show(i); });
+    tabbar.appendChild(btn);
+  });
+  function show(i) {
+    panels.forEach(function (p, j) {
+      p.classList.toggle("on", i === j);
+      tabbar.children[j].classList.toggle("on", i === j);
+    });
+    try { localStorage.setItem("rayprep-tab", i); } catch (e) {}
+  }
+  var saved = 0;
+  try { saved = parseInt(localStorage.getItem("rayprep-tab") || "0", 10) || 0; } catch (e) {}
+  show(Math.min(saved, panels.length - 1));
+
+  // ---------- flashcards ----------
+  var cards = [
+    { t: "Core concept", q: "Explain how an AMM works to someone non-technical.", a: "A liquidity pool is a pot holding two tokens. A formula sets the price from the ratio in the pot: 1,000 SOL and 76,000 USDC means SOL is $76. Buy SOL from the pot and SOL gets scarcer, so the price rises automatically. No order book, no counterparty; you trade against the pot, and the people who filled it earn the fees." },
+    { t: "Core concept", q: "What actually happens when I hit swap on Raydium?", a: "Your wallet builds a transaction: wrap SOL if needed, ensure token accounts exist, then call the pool program with your input and a minimum-out from your slippage setting. The program checks the math against reserves and moves tokens between vaults and your accounts; if the pool moved too much since the quote, it fails instead of filling badly. You also set a compute budget and priority fee so it lands. <strong>I've built and deserialized these exact transactions: 5 instructions, 24 accounts, 1 lookup table.</strong>" },
+    { t: "LPing", q: "Standard pool vs concentrated liquidity: when would an LP pick each?", a: "Standard: passive, deposit and forget, fees minus IL. Concentrated: pick a price range, earn far more per dollar in range, but it's active management, and out of range you hold 100% of the wrong side earning nothing. Stables suit tight ranges; volatile pairs need wide ranges or rebalancing. <strong>I watched a $6M CLMM pool out-trade the $10M standard pool on Raydium, live.</strong>" },
+    { t: "LPing", q: "What's impermanent loss?", a: "The AMM formula constantly rebalances, which means LPs automatically sell the rising token and accumulate the falling one. If prices diverge, the LP ends up worth less than just holding; it reverses if prices return, hence impermanent. Fees are the payment for that risk: LPing wins when fees beat divergence." },
+    { t: "Trading", q: "Slippage vs price impact?", a: "Price impact is what my own trade does to the pool: deterministic. Slippage is the world changing between quote and execution. Slippage tolerance sets the worst fill I'll accept; the tx carries a minimum-out and reverts beyond it. Tight tolerance is also the cheapest sandwich defense." },
+    { t: "Routing", q: "Your quote routed SOL to USDT to USDC. Why?", a: "The router prices every path; two hops through deep pools beat one hop through a shallower or pricier one. Each hop adds fee and impact, so it only wins when pools are deep enough, and the router does that math. Big trades can also be split across pools in parallel." },
+    { t: "Debugging", q: "An integrator says swaps randomly fail. Walk me through it.", a: "Get artifacts first: signatures for landed failures, RPC errors for the rest. Explorer logs name the failing instruction. Classify: slippage reverts mean stale quotes or volatility; blockhash expiry means slow signing; ProgramFailedToComplete means an undersized compute budget (CLMM can hit 375k CU crossing ticks); never-landing means priority fee too low on a contested pool account. Reproduce with a minimal script, fix, then write it up so the next integrator doesn't hit it. <strong>The failure I personally hit was API-shaped: the tx builder wants the whole quote response, not the inner data object, and nothing documents that.</strong>" },
+    { t: "Debugging", q: "How do you make transactions land reliably on Solana?", a: "Right-size the compute limit with ~25% headroom, set priority fees from recent fee data on the writable accounts you touch (the pool, not the mint), refresh the blockhash if signing is slow, retry with ~1.5x fee escalation, and use Jito bundles for anything sandwich-sensitive." },
+    { t: "Security", q: "What's a sandwich attack and how do you protect users?", a: "A bot sees your pending swap, buys before you so you fill at a worse price, then sells after. On Solana there's no public mempool, so it happens via leader-side ordering and co-located searchers. Defenses: tight slippage (0.3% or less makes most sandwiches unprofitable), Jito bundles for private submission, fresh pool state right before submitting, and splitting large trades." },
+    { t: "Honesty", q: "How comfortable are you with Rust?", a: "TypeScript is my daily driver, which is also where most integrators live. Rust I read and reason about comfortably: I can walk an on-chain program, follow account constraints, and work out why an instruction rejects. For this role the job is meeting integrators in TypeScript while being able to open the program source when the answer lives there." },
+    { t: "Story", q: "Why DevRel, and why Raydium?", a: "I've built products solo for years and the part I keep returning to is teaching: my content is me explaining correct infrastructure to junior devs. DevRel is that, professionally, at the protocol routing most of Solana's liquidity. I didn't want to just claim interest, so I integrated Raydium before applying, found the friction a newcomer finds, and wrote it up. I'd rather show up with the first week's work done." },
+    { t: "Story", q: "Walk me through a project you're proud of.", a: "Scrolly: one-line idea to hackathon win to 40k+ users and 1.7M games, solo, on a $1,000 marketing budget, V1 in 8 weeks. The part relevant here: I kept shipping into a live product and built the developer-facing side, a B2B dashboard and a game engine SDK third-party clients integrated. Supporting those integrators was my first real DevRel work: their bugs, my docs, their deadlines." },
+    { t: "Receipts", q: "What would you improve about our docs?", a: "I went through them as a first-time integrator. The APIs are genuinely good: no key, fast, consistent envelope, and the Trade API returning a ready-to-sign transaction is great DX. The friction is discoverability: the Trade API base URL isn't stated anywhere I found, the v3 reference is Swagger with no task-based layer, the swapResponse body shape is undocumented, fee units in the route plan aren't stated, and there's no zero-risk way to try the full flow, though your own tx builder makes one possible: build for a throwaway key and inspect. Every fix is docs and examples, not protocol work." },
+    { t: "Soft skills", q: "How do you handle a frustrated partner at a bad moment?", a: "Acknowledge, then artifact. Frustrated devs calm down the moment someone competent asks for the tx signature and actually reads the logs. Human tone, realistic ETA, root cause in writing afterward, and the fix goes into the docs so nobody hits it again." },
+    { t: "Weakness", q: "Where are you weakest for this role?", a: "I haven't held a DevRel title and my public content is early-stage. But the components of the job are things I've done for real: shipped Solana integrations, supported third-party devs on my own SDK, taught juniors, spoken on a Solana stage. The audit and quickstart I brought are me doing the job before being asked." }
+  ];
+
+  var state = {};
+  try { state = JSON.parse(localStorage.getItem("rayprep-cards") || "{}"); } catch (e) { state = {}; }
+  var idx = 0;
+  var flash = document.getElementById("flash");
+  var ftag = document.getElementById("ftag"), fq = document.getElementById("fq"), fa = document.getElementById("fa");
+  var reveal = document.getElementById("reveal"), gotit = document.getElementById("gotit"),
+      again = document.getElementById("again"), skip = document.getElementById("skip");
+  var pipsEl = document.getElementById("pips"), countEl = document.getElementById("drillcount");
+
+  function renderPips() {
+    pipsEl.innerHTML = "";
+    cards.forEach(function (c, i) {
+      var b = document.createElement("button");
+      b.className = "pip" + (state[i] === "ok" ? " ok" : state[i] === "hard" ? " hard" : "") + (i === idx ? " now" : "");
+      b.setAttribute("aria-label", "Question " + (i + 1));
+      b.addEventListener("click", function () { idx = i; renderCard(); });
+      pipsEl.appendChild(b);
+    });
+    var ok = cards.reduce(function (n, c, i) { return n + (state[i] === "ok" ? 1 : 0); }, 0);
+    countEl.textContent = ok + " / " + cards.length + " nailed";
+  }
+  function renderCard() {
+    var c = cards[idx];
+    flash.classList.remove("open");
+    ftag.textContent = (idx + 1) + " of " + cards.length + " \u00B7 " + c.t;
+    fq.textContent = c.q;
+    fa.innerHTML = c.a;
+    reveal.hidden = false; gotit.hidden = true; again.hidden = true;
+    renderPips();
+  }
+  function next() { idx = (idx + 1) % cards.length; renderCard(); }
+  reveal.addEventListener("click", function () {
+    flash.classList.add("open");
+    reveal.hidden = true; gotit.hidden = false; again.hidden = false;
+  });
+  gotit.addEventListener("click", function () { state[idx] = "ok"; save(); next(); });
+  again.addEventListener("click", function () { state[idx] = "hard"; save(); next(); });
+  skip.addEventListener("click", next);
+  document.getElementById("resetdrill").addEventListener("click", function () {
+    state = {}; save(); idx = 0; renderCard();
+  });
+  function save() { try { localStorage.setItem("rayprep-cards", JSON.stringify(state)); } catch (e) {} }
+  renderCard();
+
+  // ---------- ask-them picks ----------
+  var asks = [
+    "What does the integrator queue look like today: who's asking for help, and what do they get stuck on most?",
+    "Who owns docs today, and how much freedom would I have to restructure them?",
+    "What would a great first 90 days look like from your side?",
+    "How does the Growth team measure DevRel: integrations shipped, ticket load, docs usage, something else?",
+    "CPMM is the recommended standard pool now; how far along is the migration off AMM v4, and does DevRel own that developer messaging?",
+    "How much integrator pain comes from Solana itself (tx landing, priority fees) versus Raydium's own surface?",
+    "Is the Trade API or the SDK the path you want new integrators on? The docs don't fully commit to one.",
+    "The JD mentions LLM-powered developer workflows. Is there appetite for an MCP server or AI-assisted integration support, or is that exploratory?",
+    "What made you join Raydium, and what's kept you?",
+    "What's the team most excited about shipping next quarter?"
+  ];
+  var picks = {};
+  try { picks = JSON.parse(localStorage.getItem("rayprep-asks") || "{}"); } catch (e) { picks = {}; }
+  var askWrap = document.getElementById("askthem"), note = document.getElementById("picknote");
+  asks.forEach(function (q, i) {
+    var lab = document.createElement("label");
+    lab.className = "check" + (picks[i] ? "" : "");
+    var cb = document.createElement("input");
+    cb.type = "checkbox"; cb.checked = !!picks[i];
+    cb.addEventListener("change", function () {
+      picks[i] = cb.checked;
+      try { localStorage.setItem("rayprep-asks", JSON.stringify(picks)); } catch (e) {}
+      updateNote();
+    });
+    lab.appendChild(cb);
+    lab.appendChild(document.createTextNode(q));
+    askWrap.appendChild(lab);
+  });
+  function updateNote() {
+    var n = asks.reduce(function (t, q, i) { return t + (picks[i] ? 1 : 0); }, 0);
+    note.textContent = n + " picked (aim for 6-8)";
+  }
+  updateNote();
+
+  // ---------- pre-call checklist ----------
+  var checks = [
+    "Read the whole prep twice",
+    "Answered every drill card out loud with the doc closed",
+    "Did one small real swap on raydium.io and looked at a CLMM pool page",
+    "Ran the three quickstart scripts fresh (morning of the call)",
+    "Picked 6-8 questions in the Ask Them tab",
+    "Booked the slot and sent date/time/timezone to the recruiter",
+    "Quickstart repo, friction notes, and Raydium docs open on screen"
+  ];
+  var done = {};
+  try { done = JSON.parse(localStorage.getItem("rayprep-checks") || "{}"); } catch (e) { done = {}; }
+  var preWrap = document.getElementById("prechecks");
+  checks.forEach(function (c, i) {
+    var lab = document.createElement("label");
+    lab.className = "check" + (done[i] ? " done" : "");
+    var cb = document.createElement("input");
+    cb.type = "checkbox"; cb.checked = !!done[i];
+    cb.addEventListener("change", function () {
+      done[i] = cb.checked;
+      lab.classList.toggle("done", cb.checked);
+      try { localStorage.setItem("rayprep-checks", JSON.stringify(done)); } catch (e) {}
+    });
+    lab.appendChild(cb);
+    lab.appendChild(document.createTextNode(c));
+    preWrap.appendChild(lab);
+  });
+})();
+</script>
+
+</body>
+</html>
